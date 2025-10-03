@@ -56,8 +56,48 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
 
   const loadProfileData = async () => {
     try {
-      // In a real implementation, you would fetch from your API
-      // For now, we'll use the existing data structure
+      const response = await fetch('/api/admin/profile')
+      if (response.ok) {
+        const data = await response.json()
+        setProfile(data)
+      } else {
+        // Fallback to default data if API fails
+        const mockData: ProfileData = {
+          fullName: 'Abdullah Hassan',
+          headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
+          location: 'United Arab Emirates (Dubai)',
+          summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
+          currentFocus: [
+            'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
+            'Global Marketplace — import/export & containerized trade portal',
+            'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
+          ],
+          education: [
+            {
+              degree: 'MSc (Mathematical Statistics), in progress',
+              institution: 'University of the Witwatersrand (Wits)',
+              focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
+            },
+            {
+              degree: 'BSc (Actuarial Science) + AI/Statistics',
+              institution: '—',
+              focus: 'Quantitative finance, time-series modeling, ML/AI'
+            }
+          ],
+          emails: ['abdullah.hassan@globalnext.rocks'],
+          phones: ['+27 82 551 1243'],
+          links: {
+            website: '',
+            github: '',
+            linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
+            twitter: ''
+          }
+        }
+        setProfile(mockData)
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error)
+      // Use default data on error
       const mockData: ProfileData = {
         fullName: 'Abdullah Hassan',
         headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
@@ -90,8 +130,6 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
         }
       }
       setProfile(mockData)
-    } catch (error) {
-      console.error('Error loading profile:', error)
     } finally {
       setIsLoading(false)
     }
@@ -102,9 +140,21 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
     setSaveStatus('idle')
 
     try {
-      // In a real implementation, you would save to your backend
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate API call
-      setSaveStatus('success')
+      const response = await fetch('/api/admin/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      })
+
+      if (response.ok) {
+        setSaveStatus('success')
+      } else {
+        const error = await response.json()
+        console.error('Failed to save profile:', error)
+        setSaveStatus('error')
+      }
     } catch (error) {
       console.error('Error saving profile:', error)
       setSaveStatus('error')
