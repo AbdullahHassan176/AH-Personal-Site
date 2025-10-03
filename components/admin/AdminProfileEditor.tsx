@@ -81,39 +81,38 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
       }
 
       // Fallback to default data
-        const mockData: ProfileData = {
-          fullName: 'Abdullah Hassan',
-          headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
-          location: 'United Arab Emirates (Dubai)',
-          summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-          currentFocus: [
-            'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
-            'Global Marketplace — import/export & containerized trade portal',
-            'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
-          ],
-          education: [
-            {
-              degree: 'MSc (Mathematical Statistics), in progress',
-              institution: 'University of the Witwatersrand (Wits)',
-              focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
-            },
-            {
-              degree: 'BSc (Actuarial Science) + AI/Statistics',
-              institution: '—',
-              focus: 'Quantitative finance, time-series modeling, ML/AI'
-            }
-          ],
-          emails: ['abdullah.hassan@globalnext.rocks'],
-          phones: ['+27 82 551 1243'],
-          links: {
-            website: '',
-            github: '',
-            linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
-            twitter: ''
+      const mockData: ProfileData = {
+        fullName: 'Abdullah Hassan',
+        headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
+        location: 'United Arab Emirates (Dubai)',
+        summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
+        currentFocus: [
+          'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
+          'Global Marketplace — import/export & containerized trade portal',
+          'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
+        ],
+        education: [
+          {
+            degree: 'MSc (Mathematical Statistics), in progress',
+            institution: 'University of the Witwatersrand (Wits)',
+            focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
+          },
+          {
+            degree: 'BSc (Actuarial Science) + AI/Statistics',
+            institution: '—',
+            focus: 'Quantitative finance, time-series modeling, ML/AI'
           }
+        ],
+        emails: ['abdullah.hassan@globalnext.rocks'],
+        phones: ['+27 82 551 1243'],
+        links: {
+          website: '',
+          github: '',
+          linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
+          twitter: ''
         }
-        setProfile(mockData)
       }
+      setProfile(mockData)
     } catch (error) {
       console.error('Error loading profile:', error)
       // Use default data on error
