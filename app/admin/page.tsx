@@ -15,9 +15,15 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('dashboard')
 
   useEffect(() => {
-    // Check if admin mode is enabled
-    const isAdminMode = process.env.NEXT_PUBLIC_ADMIN === '1'
-    setIsAuthorized(isAdminMode)
+    // Check if user is authenticated
+    const authToken = localStorage.getItem('admin_auth')
+    const adminUser = localStorage.getItem('admin_user')
+    
+    if (authToken === 'true' && adminUser === 'abdullahh1610@gmail.com') {
+      setIsAuthorized(true)
+    } else {
+      setIsAuthorized(false)
+    }
     setIsLoading(false)
   }, [])
 
@@ -32,15 +38,26 @@ export default function AdminPage() {
     )
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('admin_auth')
+    localStorage.removeItem('admin_user')
+    window.location.href = '/admin/login'
+  }
+
   if (!isAuthorized) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Access Denied</h1>
-          <p className="text-gray-400">Admin panel is not available in production mode.</p>
-          <p className="text-gray-500 text-sm mt-2">
-            Set NEXT_PUBLIC_ADMIN=1 in your environment variables to enable admin mode.
-          </p>
+          <p className="text-gray-400">You need to be logged in to access the admin panel.</p>
+          <div className="mt-6">
+            <a
+              href="/admin/login"
+              className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
+            >
+              Go to Login
+            </a>
+          </div>
         </div>
       </div>
     )
@@ -76,6 +93,12 @@ export default function AdminPage() {
               >
                 View Site
               </a>
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>
