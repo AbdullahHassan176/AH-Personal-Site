@@ -1,0 +1,43 @@
+{
+  "profile": {
+    "main": "/images/DSCF6400.JPG",
+    "alt": "Abdullah Hassan - Professional portrait in business attire with confident smile"
+  },
+  "gallery": [
+    {
+      "src": "/images/DSCF6400.JPG",
+      "alt": "Professional portrait of Abdullah Hassan in business attire",
+      "category": "professional"
+    },
+    {
+      "src": "/images/DSCF6402.JPG",
+      "alt": "Abdullah Hassan in formal business suit with portfolio",
+      "category": "professional"
+    },
+    {
+      "src": "/images/DSCF6428.JPG",
+      "alt": "Team photo with Abdullah Hassan and colleagues on staircase",
+      "category": "team"
+    },
+    {
+      "src": "/images/DSCF6446.JPG",
+      "alt": "Group photo in modern workspace with diverse team",
+      "category": "team"
+    },
+    {
+      "src": "/images/DSCF6453.JPG",
+      "alt": "Abdullah Hassan in casual professional setting",
+      "category": "casual"
+    },
+    {
+      "src": "/images/image0.jpeg",
+      "alt": "Professional headshot of Abdullah Hassan in modern office",
+      "category": "professional"
+    },
+    {
+      "src": "/images/image2.jpeg",
+      "alt": "Abdullah Hassan making peace sign in contemporary workspace",
+      "category": "casual"
+    }
+  ]
+}

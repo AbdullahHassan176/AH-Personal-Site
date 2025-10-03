@@ -1,0 +1,23 @@
+languages:
+  - Python
+  - R
+  - JavaScript
+  - TypeScript
+frameworks:
+  - Next.js
+  - Vue
+  - React
+  - TensorFlow
+  - PyTorch
+data_ml:
+  - Time-series (GARCH/NF/GAN)
+  - Synthetic data generation
+  - ETL & feature engineering
+cloud_devops:
+  - Azure (SWA, Functions, Cosmos DB)
+  - GitHub Actions
+  - Docker
+business:
+  - Tokenization (RWAs)
+  - Quant finance & risk
+  - Go-to-market & partnerships

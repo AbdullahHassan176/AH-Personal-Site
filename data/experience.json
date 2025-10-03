@@ -1,0 +1,39 @@
+[
+  {
+    "company": "Deloitte (South Africa)",
+    "title": "Quant / Financial Engineering (Consulting)",
+    "start": "2022-01-01",
+    "end": null,
+    "location": "Johannesburg, South Africa (remote-friendly)",
+    "highlights": [
+      "Built/validated quantitative models across derivatives and risk; documented controls and created reproducible research pipelines.",
+      "Produced technical presentations (e.g., embedded derivatives within NPS agreements for electricity) tailored for quant audiences.",
+      "Collaborated cross-functionally to deliver analytics and client-facing insights with measurable business impact."
+    ],
+    "tech": ["R", "Python", "rugarch", "TensorFlow", "PyTorch", "GitHub Actions", "Power BI"]
+  },
+  {
+    "company": "Unamani Pty Ltd",
+    "title": "Founder / CEO (AI & Data Analytics)",
+    "start": "2024-01-01",
+    "end": null,
+    "location": "South Africa · Global",
+    "highlights": [
+      "Led development of AI-forward data products and consulting engagements.",
+      "Shipped dashboards, ETL pipelines, and ML prototypes for clients."
+    ],
+    "tech": ["Azure", "Cosmos DB", "Azure Static Web Apps", "Functions", "Python", "Next.js"]
+  },
+  {
+    "company": "Petigree Global / Hurayra Halal Pet Foods",
+    "title": "Founder / Operator (UAE mainland entity)",
+    "start": "2024-01-01",
+    "end": null,
+    "location": "UAE",
+    "highlights": [
+      "Built import/distribution operations; coordinated Montego shipments and MOCCAE compliance.",
+      "Negotiated A&P budgets, managed partners (Aleef, etc.), and developed a distribution app."
+    ],
+    "tech": ["Next.js", "Vue", "Shopify", "Wix", "Azure", "Power BI"]
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "fullName": "Abdullah Hassan",
+  "headline": "Quant-minded AI & Analytics Leader • Tokenization Builder • Operator",
+  "location": "United Arab Emirates (Dubai)",
+  "summary": "Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization. He leads multi-disciplinary teams to build data products, investor/issuer portals, and Azure-first platforms that turn complex ideas into production systems. His work spans normalizing-flow GARCH research, synthetic data generation, FX & equity modeling, and the architecture of tokenization ecosystems for logistics and real estate. Abdullah blends rigorous analytical training with hands-on full-stack execution to ship valuable, scalable software.",
+  "currentFocus": [
+    "Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)",
+    "Global Marketplace — import/export & containerized trade portal",
+    "Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance"
+  ],
+  "education": [
+    {
+      "degree": "MSc (Mathematical Statistics), in progress",
+      "institution": "University of the Witwatersrand (Wits)",
+      "focus": "Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation"
+    },
+    {
+      "degree": "BSc (Actuarial Science) + AI/Statistics",
+      "institution": "—",
+      "focus": "Quantitative finance, time-series modeling, ML/AI"
+    }
+  ],
+  "emails": ["abdullah.hassan@globalnext.rocks"],
+  "phones": ["+27 82 551 1243"],
+  "links": {
+    "website": "",
+    "github": "",
+    "linkedin": "https://www.linkedin.com/in/abdullah-hassan-635a831b6/",
+    "twitter": ""
+  }
+}

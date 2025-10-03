@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Global Edge — Tokenization Platform",
+    "year": 2025,
+    "category": "Web3 / Tokenization",
+    "summary": "Investor/Issuer portals for tokenizing logistics assets (shipping containers) and broader RWAs.",
+    "outcomes": [
+      "Designed Azure-first architecture (SWA, Functions, Cosmos DB).",
+      "Built issuer/investor flows, oracle connectors (Chainlink), and compliance-ready data models."
+    ],
+    "stack": ["Next.js", "Cosmos DB", "Azure Functions", "Chainlink", "Cosmos DB (NoSQL/Postgres)"],
+    "links": {
+      "site": "https://theglobaledge.io/",
+      "repo": ""
+    }
+  },
+  {
+    "name": "NF-GARCH Research & Synthetic Data",
+    "year": 2025,
+    "category": "AI & Quant Research",
+    "summary": "Evaluated Normalizing Flows on GARCH models for FX/equity returns; compared EGARCH/TGARCH vs GAN/Flow methods.",
+    "outcomes": [
+      "Built full R/Python pipelines: chrono split + time-series CV, diagnostics, win-rates, Wilcoxon tests.",
+      "Integrated NF residuals into GARCH simulations; improved stylized facts matching."
+    ],
+    "stack": ["R (rugarch)", "Python", "TensorFlow/PyTorch", "nflows", "pandas", "Power BI"],
+    "links": {
+      "repo": "",
+      "paper": ""
+    }
+  },
+  {
+    "name": "Global Marketplace / Ops Portal",
+    "year": 2025,
+    "category": "Logistics",
+    "summary": "Consignment & containerized trade portal with order, inventory, invoicing, and reporting.",
+    "outcomes": [
+      "Re-architected UI/UX via UXPilot + Cursor prompts; public landing vs authenticated Ops portal.",
+      "Set up CI/CD and environment management."
+    ],
+    "stack": ["Next.js", "Vue", "Azure SWA", "Cosmos DB", "Functions"],
+    "links": { "site": "", "repo": "" }
+  }
+]
