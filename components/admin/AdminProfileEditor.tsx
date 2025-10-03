@@ -48,6 +48,7 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [error, setError] = useState('')
 
   useEffect(() => {
     // Load profile data
@@ -138,6 +139,7 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
   const handleSave = async () => {
     setIsSaving(true)
     setSaveStatus('idle')
+    setError('')
 
     try {
       const response = await fetch('/api/admin/profile', {
@@ -149,15 +151,20 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
       })
 
       if (response.ok) {
+        const result = await response.json()
         setSaveStatus('success')
+        console.log('Profile saved successfully:', result)
       } else {
         const error = await response.json()
         console.error('Failed to save profile:', error)
         setSaveStatus('error')
+        // Store error message for display
+        setError(error.error || 'Unknown error occurred')
       }
     } catch (error) {
       console.error('Error saving profile:', error)
       setSaveStatus('error')
+      setError('Network error: Unable to connect to server. This might be due to static export mode.')
     } finally {
       setIsSaving(false)
     }
@@ -251,13 +258,17 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
       {/* Save Status */}
       {saveStatus === 'success' && (
         <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-4 text-green-400">
-          Profile saved successfully!
+          ✅ Profile saved successfully! Changes will appear on your main site.
         </div>
       )}
 
       {saveStatus === 'error' && (
         <div className="bg-red-900/20 border border-red-400/30 rounded-xl p-4 text-red-400">
-          Failed to save profile. Please try again.
+          <div className="font-semibold mb-2">❌ Failed to save profile</div>
+          <div className="text-sm">{error || 'Please try again.'}</div>
+          <div className="text-xs mt-2 text-red-300">
+            If this persists, check the browser console for more details.
+          </div>
         </div>
       )}
 

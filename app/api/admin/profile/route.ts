@@ -20,15 +20,40 @@ export async function POST(request: NextRequest) {
     
     // Validate required fields
     if (!body.fullName || !body.headline) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+      return NextResponse.json({ 
+        error: 'Missing required fields: fullName and headline are required' 
+      }, { status: 400 })
+    }
+
+    // Check if data directory exists
+    if (!fs.existsSync(dataDir)) {
+      return NextResponse.json({ 
+        error: 'Data directory does not exist. Please ensure the /data folder is created.' 
+      }, { status: 500 })
     }
 
     // Save to file
     const filePath = path.join(dataDir, 'profile.json')
-    fs.writeFileSync(filePath, JSON.stringify(body, null, 2))
     
-    return NextResponse.json({ success: true, message: 'Profile updated successfully' })
+    // Ensure the file is writable
+    try {
+      fs.writeFileSync(filePath, JSON.stringify(body, null, 2), 'utf8')
+    } catch (writeError) {
+      console.error('File write error:', writeError)
+      return NextResponse.json({ 
+        error: `Failed to write to file: ${writeError instanceof Error ? writeError.message : 'Unknown write error'}` 
+      }, { status: 500 })
+    }
+    
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Profile updated successfully',
+      timestamp: new Date().toISOString()
+    })
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to save profile data' }, { status: 500 })
+    console.error('Profile API error:', error)
+    return NextResponse.json({ 
+      error: `Server error: ${error instanceof Error ? error.message : 'Unknown error'}` 
+    }, { status: 500 })
   }
 }
