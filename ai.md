@@ -83,3 +83,4 @@ ANALYTICS_ID=
 - Ensure accessibility compliance
 - Optimize for performance and SEO
 - Keep code modular and reusable
+

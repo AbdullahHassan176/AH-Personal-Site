@@ -94,3 +94,4 @@ export interface Images {
     category: string;
   }>;
 }
+

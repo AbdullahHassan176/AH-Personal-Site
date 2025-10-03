@@ -88,3 +88,4 @@ export function ExperienceTimeline({ experience }: ExperienceTimelineProps) {
     </section>
   )
 }
+

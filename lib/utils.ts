@@ -24,3 +24,4 @@ export function scrollToSection(sectionId: string) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 }
+

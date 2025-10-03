@@ -147,3 +147,4 @@ export function CareerTimeline() {
     </section>
   )
 }
+

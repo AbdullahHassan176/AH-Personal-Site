@@ -84,3 +84,4 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
     </section>
   )
 }
+
