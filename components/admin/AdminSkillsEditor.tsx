@@ -10,7 +10,11 @@ interface SkillsData {
   business: string[]
 }
 
-export function AdminSkillsEditor() {
+interface AdminSkillsEditorProps {
+  onBack?: () => void
+}
+
+export function AdminSkillsEditor({ onBack }: AdminSkillsEditorProps) {
   const [skills, setSkills] = useState<SkillsData>({
     languages: ['Python', 'R', 'JavaScript', 'TypeScript'],
     frameworks: ['Next.js', 'Vue', 'React', 'TensorFlow', 'PyTorch'],
@@ -36,9 +40,22 @@ export function AdminSkillsEditor() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-white">Skills Editor</h2>
-        <p className="text-gray-400">Manage your technical and business skills</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Skills Editor</h2>
+          <p className="text-gray-400">Manage your technical and business skills</p>
+        </div>
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back
+          </button>
+        )}
       </div>
 
       <div className="space-y-6">

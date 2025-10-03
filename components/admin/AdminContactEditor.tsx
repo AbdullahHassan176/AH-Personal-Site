@@ -12,7 +12,11 @@ interface ContactData {
   }>
 }
 
-export function AdminContactEditor() {
+interface AdminContactEditorProps {
+  onBack?: () => void
+}
+
+export function AdminContactEditor({ onBack }: AdminContactEditorProps) {
   const [contact, setContact] = useState<ContactData>({
     email: 'abdullah.hassan@globalnext.rocks',
     phone: '+27 82 551 1243',
@@ -47,9 +51,22 @@ export function AdminContactEditor() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-white">Contact Editor</h2>
-        <p className="text-gray-400">Manage your contact information and social links</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Contact Editor</h2>
+          <p className="text-gray-400">Manage your contact information and social links</p>
+        </div>
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back
+          </button>
+        )}
       </div>
 
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">

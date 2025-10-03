@@ -9,7 +9,11 @@ interface WritingEntry {
   link: string
 }
 
-export function AdminWritingEditor() {
+interface AdminWritingEditorProps {
+  onBack?: () => void
+}
+
+export function AdminWritingEditor({ onBack }: AdminWritingEditorProps) {
   const [writings, setWritings] = useState<WritingEntry[]>([
     {
       date: '2025-04-20',
@@ -45,12 +49,25 @@ export function AdminWritingEditor() {
           <h2 className="text-2xl font-bold text-white">Writing & Speaking Editor</h2>
           <p className="text-gray-400">Manage your articles, talks, and presentations</p>
         </div>
-        <button
-          onClick={addWriting}
-          className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
-        >
-          Add Entry
-        </button>
+        <div className="flex items-center space-x-3">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back
+            </button>
+          )}
+          <button
+            onClick={addWriting}
+            className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
+          >
+            Add Entry
+          </button>
+        </div>
       </div>
 
       <div className="space-y-6">
