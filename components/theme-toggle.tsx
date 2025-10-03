@@ -15,19 +15,9 @@ export function ThemeToggle() {
     }
   }, [])
 
-  if (!mounted) {
-    return (
-      <div className="flex items-center space-x-3">
-        <span className="text-sm text-gray-400">Light</span>
-        <div className="w-11 h-6 bg-gray-600 rounded-full relative">
-          <span className="block w-4 h-4 bg-white rounded-full absolute top-1 left-1" />
-        </div>
-        <span className="text-sm text-gray-400">Dark</span>
-      </div>
-    )
-  }
-
   useEffect(() => {
+    if (!mounted) return
+    
     const root = document.documentElement
     if (isDark) {
       root.classList.add('dark')
@@ -36,13 +26,13 @@ export function ThemeToggle() {
       root.classList.remove('dark')
       localStorage.setItem('theme', 'light')
     }
-  }, [isDark])
+  }, [isDark, mounted])
 
   return (
     <div className="flex items-center space-x-3">
       <span className="text-sm text-gray-400">Light</span>
       <Switch
-        checked={isDark}
+        checked={mounted ? isDark : true}
         onCheckedChange={setIsDark}
         className="w-11 h-6 bg-gray-600 rounded-full relative transition-colors data-[state=checked]:bg-yellow-400"
       >
