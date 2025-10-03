@@ -23,7 +23,11 @@ interface ProfileData {
   }
 }
 
-export function AdminProfileEditor() {
+interface AdminProfileEditorProps {
+  onBack?: () => void
+}
+
+export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
   const [profile, setProfile] = useState<ProfileData>({
     fullName: '',
     headline: '',
@@ -172,13 +176,26 @@ export function AdminProfileEditor() {
           <h2 className="text-2xl font-bold text-white">Profile Editor</h2>
           <p className="text-gray-400">Edit your personal profile information</p>
         </div>
-        <button
-          onClick={handleSave}
-          disabled={isSaving}
-          className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isSaving ? 'Saving...' : 'Save Changes'}
-        </button>
+        <div className="flex items-center space-x-3">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors flex items-center"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Back
+            </button>
+          )}
+          <button
+            onClick={handleSave}
+            disabled={isSaving}
+            className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSaving ? 'Saving...' : 'Save Changes'}
+          </button>
+        </div>
       </div>
 
       {/* Save Status */}

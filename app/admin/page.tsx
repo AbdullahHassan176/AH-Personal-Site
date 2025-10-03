@@ -128,13 +128,13 @@ export default function AdminPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
-        {activeTab === 'dashboard' && <AdminDashboard />}
-        {activeTab === 'profile' && <AdminProfileEditor />}
-        {activeTab === 'experience' && <AdminExperienceEditor />}
-        {activeTab === 'projects' && <AdminProjectsEditor />}
-        {activeTab === 'skills' && <AdminSkillsEditor />}
-        {activeTab === 'writing' && <AdminWritingEditor />}
-        {activeTab === 'contact' && <AdminContactEditor />}
+        {activeTab === 'dashboard' && <AdminDashboard onNavigate={setActiveTab} />}
+        {activeTab === 'profile' && <AdminProfileEditor onBack={() => setActiveTab('dashboard')} />}
+        {activeTab === 'experience' && <AdminExperienceEditor onBack={() => setActiveTab('dashboard')} />}
+        {activeTab === 'projects' && <AdminProjectsEditor onBack={() => setActiveTab('dashboard')} />}
+        {activeTab === 'skills' && <AdminSkillsEditor onBack={() => setActiveTab('dashboard')} />}
+        {activeTab === 'writing' && <AdminWritingEditor onBack={() => setActiveTab('dashboard')} />}
+        {activeTab === 'contact' && <AdminContactEditor onBack={() => setActiveTab('dashboard')} />}
       </div>
     </div>
   )

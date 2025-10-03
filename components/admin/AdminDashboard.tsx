@@ -2,7 +2,11 @@
 
 import { useState, useEffect } from 'react'
 
-export function AdminDashboard() {
+interface AdminDashboardProps {
+  onNavigate?: (tab: string) => void
+}
+
+export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
   const [stats, setStats] = useState({
     profile: { lastModified: '', size: 0 },
     experience: { count: 0, lastModified: '' },
@@ -30,25 +34,25 @@ export function AdminDashboard() {
       title: 'Add New Project',
       description: 'Create a new project entry',
       icon: '🚀',
-      action: () => console.log('Add project'),
+      action: () => onNavigate?.('projects'),
     },
     {
       title: 'Update Experience',
       description: 'Modify work experience details',
       icon: '💼',
-      action: () => console.log('Update experience'),
+      action: () => onNavigate?.('experience'),
     },
     {
       title: 'Edit Skills',
       description: 'Add or modify technical skills',
       icon: '⚡',
-      action: () => console.log('Edit skills'),
+      action: () => onNavigate?.('skills'),
     },
     {
       title: 'Add Writing',
       description: 'Create new writing entry',
       icon: '✍️',
-      action: () => console.log('Add writing'),
+      action: () => onNavigate?.('writing'),
     },
   ]
 
@@ -64,71 +68,107 @@ export function AdminDashboard() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <button
+          onClick={() => onNavigate?.('profile')}
+          className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-400/50 hover:bg-gray-750 transition-all text-left group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Profile</h3>
+            <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Profile</h3>
             <span className="text-2xl">👤</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Last Modified: {stats.profile.lastModified}</div>
             <div className="text-sm text-gray-400">Size: {stats.profile.size} KB</div>
           </div>
-        </div>
+          <div className="mt-4 text-yellow-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to edit →
+          </div>
+        </button>
 
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <button
+          onClick={() => onNavigate?.('experience')}
+          className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-400/50 hover:bg-gray-750 transition-all text-left group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Experience</h3>
+            <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Experience</h3>
             <span className="text-2xl">💼</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Entries: {stats.experience.count}</div>
             <div className="text-sm text-gray-400">Last Modified: {stats.experience.lastModified}</div>
           </div>
-        </div>
+          <div className="mt-4 text-yellow-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to edit →
+          </div>
+        </button>
 
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <button
+          onClick={() => onNavigate?.('projects')}
+          className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-400/50 hover:bg-gray-750 transition-all text-left group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Projects</h3>
+            <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Projects</h3>
             <span className="text-2xl">🚀</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Entries: {stats.projects.count}</div>
             <div className="text-sm text-gray-400">Last Modified: {stats.projects.lastModified}</div>
           </div>
-        </div>
+          <div className="mt-4 text-yellow-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to edit →
+          </div>
+        </button>
 
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <button
+          onClick={() => onNavigate?.('skills')}
+          className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-400/50 hover:bg-gray-750 transition-all text-left group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Skills</h3>
+            <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Skills</h3>
             <span className="text-2xl">⚡</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Total Skills: {stats.skills.count}</div>
             <div className="text-sm text-gray-400">Last Modified: {stats.skills.lastModified}</div>
           </div>
-        </div>
+          <div className="mt-4 text-yellow-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to edit →
+          </div>
+        </button>
 
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <button
+          onClick={() => onNavigate?.('writing')}
+          className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-400/50 hover:bg-gray-750 transition-all text-left group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Writing</h3>
+            <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Writing</h3>
             <span className="text-2xl">✍️</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Articles: {stats.writing.count}</div>
             <div className="text-sm text-gray-400">Last Modified: {stats.writing.lastModified}</div>
           </div>
-        </div>
+          <div className="mt-4 text-yellow-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to edit →
+          </div>
+        </button>
 
-        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <button
+          onClick={() => onNavigate?.('contact')}
+          className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-yellow-400/50 hover:bg-gray-750 transition-all text-left group"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Contact</h3>
+            <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Contact</h3>
             <span className="text-2xl">📞</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Last Modified: {stats.contact.lastModified}</div>
             <div className="text-sm text-gray-400">Size: {stats.contact.size} KB</div>
           </div>
-        </div>
+          <div className="mt-4 text-yellow-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+            Click to edit →
+          </div>
+        </button>
       </div>
 
       {/* Quick Actions */}
