@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { DataExportHelper } from './DataExportHelper'
 
 interface ProfileData {
   fullName: string
@@ -60,61 +59,45 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
 
   const loadProfileData = async () => {
     try {
-      // Skip API calls in static export mode
-      if (typeof window !== 'undefined') {
-        // First check localStorage for static export mode
-        const localData = localStorage.getItem('admin_profile_data')
-        if (localData) {
-          setProfile(JSON.parse(localData))
-          setIsLoading(false)
-          return
-        }
-      }
-
-      // Try API only in development mode
-      if (process.env.NODE_ENV === 'development') {
-        const response = await fetch('/api/admin/profile')
-        if (response.ok) {
-          const data = await response.json()
-          setProfile(data)
-          setIsLoading(false)
-          return
-        }
-      }
-
-      // Fallback to default data
-      const mockData: ProfileData = {
-        fullName: 'Abdullah Hassan',
-        headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
-        location: 'United Arab Emirates (Dubai)',
-        summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-        currentFocus: [
-          'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
-          'Global Marketplace — import/export & containerized trade portal',
-          'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
-        ],
-        education: [
-          {
-            degree: 'MSc (Mathematical Statistics), in progress',
-            institution: 'University of the Witwatersrand (Wits)',
-            focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
-          },
-          {
-            degree: 'BSc (Actuarial Science) + AI/Statistics',
-            institution: '—',
-            focus: 'Quantitative finance, time-series modeling, ML/AI'
+      const response = await fetch('/api/admin/profile')
+      if (response.ok) {
+        const data = await response.json()
+        setProfile(data)
+      } else {
+        // Fallback to default data if API fails
+        const mockData: ProfileData = {
+          fullName: 'Abdullah Hassan',
+          headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
+          location: 'United Arab Emirates (Dubai)',
+          summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
+          currentFocus: [
+            'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
+            'Global Marketplace — import/export & containerized trade portal',
+            'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
+          ],
+          education: [
+            {
+              degree: 'MSc (Mathematical Statistics), in progress',
+              institution: 'University of the Witwatersrand (Wits)',
+              focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
+            },
+            {
+              degree: 'BSc (Actuarial Science) + AI/Statistics',
+              institution: '—',
+              focus: 'Quantitative finance, time-series modeling, ML/AI'
+            }
+          ],
+          emails: ['abdullah.hassan@globalnext.rocks'],
+          phones: ['+27 82 551 1243'],
+          links: {
+            website: '',
+            github: '',
+            linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
+            twitter: ''
           }
-        ],
-        emails: ['abdullah.hassan@globalnext.rocks'],
-        phones: ['+27 82 551 1243'],
-        links: {
-          website: '',
-          github: '',
-          linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
-          twitter: ''
         }
+        setProfile(mockData)
       }
-      setProfile(mockData)
     } catch (error) {
       console.error('Error loading profile:', error)
       // Use default data on error
@@ -161,42 +144,23 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
     setError('')
 
     try {
-      // In static export mode, save directly to localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('admin_profile_data', JSON.stringify(profile))
+      const response = await fetch('/api/admin/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      })
+
+      if (response.ok) {
+        const result = await response.json()
         setSaveStatus('success')
-        setError('')
-        console.log('Profile saved to localStorage (static export mode)')
-        setIsSaving(false)
-        return
-      }
-
-      // Try API only in development mode
-      if (process.env.NODE_ENV === 'development') {
-        const response = await fetch('/api/admin/profile', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(profile),
-        })
-
-        if (response.ok) {
-          const result = await response.json()
-          setSaveStatus('success')
-          console.log('Profile saved successfully:', result)
-        } else {
-          const error = await response.json()
-          console.error('Failed to save profile:', error)
-          setSaveStatus('error')
-          setError(error.error || 'Unknown error occurred')
-        }
+        console.log('Profile saved successfully:', result)
       } else {
-        // Production mode - save to localStorage
-        localStorage.setItem('admin_profile_data', JSON.stringify(profile))
-        setSaveStatus('success')
-        setError('')
-        console.log('Profile saved to localStorage (production mode)')
+        const error = await response.json()
+        console.error('Failed to save profile:', error)
+        setSaveStatus('error')
+        setError(error.error || 'Unknown error occurred')
       }
     } catch (error) {
       console.error('Error saving profile:', error)
@@ -292,15 +256,12 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
         </div>
       </div>
 
-      {/* Data Export Helper */}
-      <DataExportHelper />
-
       {/* Save Status */}
       {saveStatus === 'success' && (
         <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-4 text-green-400">
           <div className="font-semibold mb-2">✅ Profile saved successfully!</div>
           <div className="text-sm">
-            Changes saved locally. Use the export options below to apply to your main site.
+            Changes have been automatically applied to your main site.
           </div>
         </div>
       )}
