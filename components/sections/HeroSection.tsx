@@ -74,6 +74,7 @@ export function HeroSection({ profile, images }: HeroSectionProps) {
             <div className="relative bg-gray-800 rounded-3xl p-2 hover-glow">
               <Image 
                 className="w-full h-auto rounded-2xl object-cover" 
+                style={{ objectPosition: '70% center' }}
                 src={images.profile.main}
                 alt={images.profile.alt}
                 width={400}

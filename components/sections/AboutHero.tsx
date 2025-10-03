@@ -64,6 +64,7 @@ export function AboutHero({ profile }: AboutHeroProps) {
               <div className="relative bg-gray-800 rounded-3xl p-2 hover-glow">
                 <img 
                   className="w-full h-auto rounded-2xl object-cover" 
+                  style={{ objectPosition: '70% center' }}
                   src={images.profile.main}
                   alt={images.profile.alt}
                 />
