@@ -58,20 +58,29 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
 
   const loadProfileData = async () => {
     try {
-      // First check localStorage for static export mode
-      const localData = localStorage.getItem('admin_profile_data')
-      if (localData) {
-        setProfile(JSON.parse(localData))
-        setIsLoading(false)
-        return
+      // Skip API calls in static export mode
+      if (typeof window !== 'undefined') {
+        // First check localStorage for static export mode
+        const localData = localStorage.getItem('admin_profile_data')
+        if (localData) {
+          setProfile(JSON.parse(localData))
+          setIsLoading(false)
+          return
+        }
       }
 
-      const response = await fetch('/api/admin/profile')
-      if (response.ok) {
-        const data = await response.json()
-        setProfile(data)
-      } else {
-        // Fallback to default data if API fails
+      // Try API only in development mode
+      if (process.env.NODE_ENV === 'development') {
+        const response = await fetch('/api/admin/profile')
+        if (response.ok) {
+          const data = await response.json()
+          setProfile(data)
+          setIsLoading(false)
+          return
+        }
+      }
+
+      // Fallback to default data
         const mockData: ProfileData = {
           fullName: 'Abdullah Hassan',
           headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
@@ -151,38 +160,47 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
     setError('')
 
     try {
-      const response = await fetch('/api/admin/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(profile),
-      })
-
-      if (response.ok) {
-        const result = await response.json()
-        setSaveStatus('success')
-        console.log('Profile saved successfully:', result)
-      } else {
-        const error = await response.json()
-        console.error('Failed to save profile:', error)
-        setSaveStatus('error')
-        // Store error message for display
-        setError(error.error || 'Unknown error occurred')
-      }
-    } catch (error) {
-      console.error('Error saving profile:', error)
-      
-      // Fallback: Save to localStorage for static export mode
-      try {
+      // In static export mode, save directly to localStorage
+      if (typeof window !== 'undefined') {
         localStorage.setItem('admin_profile_data', JSON.stringify(profile))
         setSaveStatus('success')
         setError('')
         console.log('Profile saved to localStorage (static export mode)')
-      } catch (localStorageError) {
-        setSaveStatus('error')
-        setError('Network error: Unable to connect to server. This might be due to static export mode.')
+        setIsSaving(false)
+        return
       }
+
+      // Try API only in development mode
+      if (process.env.NODE_ENV === 'development') {
+        const response = await fetch('/api/admin/profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(profile),
+        })
+
+        if (response.ok) {
+          const result = await response.json()
+          setSaveStatus('success')
+          console.log('Profile saved successfully:', result)
+        } else {
+          const error = await response.json()
+          console.error('Failed to save profile:', error)
+          setSaveStatus('error')
+          setError(error.error || 'Unknown error occurred')
+        }
+      } else {
+        // Production mode - save to localStorage
+        localStorage.setItem('admin_profile_data', JSON.stringify(profile))
+        setSaveStatus('success')
+        setError('')
+        console.log('Profile saved to localStorage (production mode)')
+      }
+    } catch (error) {
+      console.error('Error saving profile:', error)
+      setSaveStatus('error')
+      setError('Failed to save profile. Please try again.')
     } finally {
       setIsSaving(false)
     }
@@ -281,19 +299,8 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
         <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-4 text-green-400">
           <div className="font-semibold mb-2">✅ Profile saved successfully!</div>
           <div className="text-sm">
-            {localStorage.getItem('admin_profile_data') ? 
-              'Changes saved locally. To apply to your main site, copy the data from localStorage to your /data/profile.json file.' :
-              'Changes will appear on your main site.'
-            }
+            Changes saved locally. Use the export options below to apply to your main site.
           </div>
-          {localStorage.getItem('admin_profile_data') && (
-            <div className="mt-3 p-3 bg-gray-800 rounded-lg">
-              <div className="text-xs text-gray-300 mb-2">Copy this data to /data/profile.json:</div>
-              <pre className="text-xs text-green-300 overflow-x-auto">
-                {JSON.stringify(JSON.parse(localStorage.getItem('admin_profile_data') || '{}'), null, 2)}
-              </pre>
-            </div>
-          )}
         </div>
       )}
 

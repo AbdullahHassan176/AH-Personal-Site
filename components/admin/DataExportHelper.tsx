@@ -1,9 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function DataExportHelper() {
   const [showHelper, setShowHelper] = useState(false)
+  const [hasData, setHasData] = useState(false)
+
+  useEffect(() => {
+    // Check localStorage after component mounts to avoid hydration issues
+    const profileData = localStorage.getItem('admin_profile_data')
+    setHasData(!!profileData)
+  }, [])
 
   const exportData = () => {
     const profileData = localStorage.getItem('admin_profile_data')
@@ -28,7 +35,7 @@ export function DataExportHelper() {
     }
   }
 
-  if (!localStorage.getItem('admin_profile_data')) {
+  if (!hasData) {
     return null
   }
 
