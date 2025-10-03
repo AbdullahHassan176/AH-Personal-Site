@@ -11,7 +11,12 @@ export function DataExportHelper() {
     setMounted(true)
     // Check localStorage after component mounts to avoid hydration issues
     const profileData = localStorage.getItem('admin_profile_data')
-    setHasData(!!profileData)
+    const experienceData = localStorage.getItem('admin_experience_data')
+    const projectsData = localStorage.getItem('admin_projects_data')
+    const skillsData = localStorage.getItem('admin_skills_data')
+    const writingData = localStorage.getItem('admin_writing_data')
+    const contactData = localStorage.getItem('admin_contact_data')
+    setHasData(!!(profileData || experienceData || projectsData || skillsData || writingData || contactData))
   }, [])
 
   if (!mounted) {
@@ -19,25 +24,49 @@ export function DataExportHelper() {
   }
 
   const exportData = () => {
-    const profileData = localStorage.getItem('admin_profile_data')
-    if (profileData) {
-      const blob = new Blob([profileData], { type: 'application/json' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = 'profile.json'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    }
+    const dataTypes = [
+      { key: 'admin_profile_data', filename: 'profile.json' },
+      { key: 'admin_experience_data', filename: 'experience.json' },
+      { key: 'admin_projects_data', filename: 'projects.json' },
+      { key: 'admin_skills_data', filename: 'skills.yaml' },
+      { key: 'admin_writing_data', filename: 'writing.json' },
+      { key: 'admin_contact_data', filename: 'contact.json' }
+    ]
+
+    dataTypes.forEach(({ key, filename }) => {
+      const data = localStorage.getItem(key)
+      if (data) {
+        const blob = new Blob([data], { type: 'application/json' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = filename
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      }
+    })
   }
 
   const copyToClipboard = () => {
-    const profileData = localStorage.getItem('admin_profile_data')
-    if (profileData) {
-      navigator.clipboard.writeText(profileData)
-      alert('Data copied to clipboard! Paste it into /data/profile.json')
+    const dataTypes = [
+      { key: 'admin_profile_data', filename: 'profile.json' },
+      { key: 'admin_experience_data', filename: 'experience.json' },
+      { key: 'admin_projects_data', filename: 'projects.json' },
+      { key: 'admin_skills_data', filename: 'skills.yaml' },
+      { key: 'admin_writing_data', filename: 'writing.json' },
+      { key: 'admin_contact_data', filename: 'contact.json' }
+    ]
+
+    const allData = dataTypes.map(({ key, filename }) => {
+      const data = localStorage.getItem(key)
+      return data ? `// ${filename}\n${data}\n\n` : ''
+    }).join('')
+
+    if (allData.trim()) {
+      navigator.clipboard.writeText(allData)
+      alert('All data copied to clipboard! Paste the relevant sections into their respective /data/*.json files')
     }
   }
 

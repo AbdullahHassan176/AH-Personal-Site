@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { DataExportHelper } from './DataExportHelper'
 
 interface ProjectEntry {
   name: string
@@ -39,6 +40,86 @@ export function AdminProjectsEditor({ onBack }: AdminProjectsEditorProps) {
       }
     }
   ])
+
+  const [isLoading, setIsLoading] = useState(true)
+  const [isSaving, setIsSaving] = useState(false)
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [error, setError] = useState('')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    loadProjectsData()
+  }, [])
+
+  const loadProjectsData = async () => {
+    try {
+      const response = await fetch('/api/admin/projects')
+      if (response.ok) {
+        const data = await response.json()
+        setProjects(data)
+        setIsLoading(false)
+        return
+      }
+    } catch (error) {
+      console.log('API not available, using localStorage fallback')
+    }
+
+    try {
+      if (typeof window !== 'undefined') {
+        const localData = localStorage.getItem('admin_projects_data')
+        if (localData) {
+          setProjects(JSON.parse(localData))
+          setIsLoading(false)
+          return
+        }
+      }
+    } catch (error) {
+      console.log('No localStorage data found')
+    }
+
+    setIsLoading(false)
+  }
+
+  const handleSave = async () => {
+    setIsSaving(true)
+    setSaveStatus('idle')
+    setError('')
+
+    try {
+      const response = await fetch('/api/admin/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(projects),
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        setSaveStatus('success')
+        console.log('Projects saved successfully via API:', result)
+        setIsSaving(false)
+        return
+      }
+    } catch (error) {
+      console.log('API not available, using localStorage fallback')
+    }
+
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('admin_projects_data', JSON.stringify(projects))
+        setSaveStatus('success')
+        console.log('Projects saved to localStorage (static export mode)')
+      }
+    } catch (error) {
+      console.error('Error saving to localStorage:', error)
+      setSaveStatus('error')
+      setError('Failed to save projects. Please try again.')
+    } finally {
+      setIsSaving(false)
+    }
+  }
 
   const addProject = () => {
     setProjects(prev => [...prev, {
