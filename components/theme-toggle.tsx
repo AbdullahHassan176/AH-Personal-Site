@@ -5,13 +5,27 @@ import { Switch } from '@radix-ui/react-switch'
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const saved = localStorage.getItem('theme')
     if (saved) {
       setIsDark(saved === 'dark')
     }
   }, [])
+
+  if (!mounted) {
+    return (
+      <div className="flex items-center space-x-3">
+        <span className="text-sm text-gray-400">Light</span>
+        <div className="w-11 h-6 bg-gray-600 rounded-full relative">
+          <span className="block w-4 h-4 bg-white rounded-full absolute top-1 left-1" />
+        </div>
+        <span className="text-sm text-gray-400">Dark</span>
+      </div>
+    )
+  }
 
   useEffect(() => {
     const root = document.documentElement

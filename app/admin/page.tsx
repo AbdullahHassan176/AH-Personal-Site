@@ -11,13 +11,26 @@ import { AdminContactEditor } from '@/components/admin/AdminContactEditor'
 
 export default function AdminPage() {
   const [isAuthorized, setIsAuthorized] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('dashboard')
 
   useEffect(() => {
     // Check if admin mode is enabled
     const isAdminMode = process.env.NEXT_PUBLIC_ADMIN === '1'
     setIsAuthorized(isAdminMode)
+    setIsLoading(false)
   }, [])
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading admin panel...</p>
+        </div>
+      </div>
+    )
+  }
 
   if (!isAuthorized) {
     return (
