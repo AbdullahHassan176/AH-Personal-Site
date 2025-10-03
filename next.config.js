@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove static export for development with API routes
-  // output: 'export',
+  // Enable static export for Azure Static Web Apps
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,

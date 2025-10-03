@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { DataExportHelper } from './DataExportHelper'
 
 interface ProfileData {
   fullName: string
@@ -59,83 +60,66 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
 
   const loadProfileData = async () => {
     try {
+      // Try API first (development mode)
       const response = await fetch('/api/admin/profile')
       if (response.ok) {
         const data = await response.json()
         setProfile(data)
-      } else {
-        // Fallback to default data if API fails
-        const mockData: ProfileData = {
-          fullName: 'Abdullah Hassan',
-          headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
-          location: 'United Arab Emirates (Dubai)',
-          summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-          currentFocus: [
-            'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
-            'Global Marketplace — import/export & containerized trade portal',
-            'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
-          ],
-          education: [
-            {
-              degree: 'MSc (Mathematical Statistics), in progress',
-              institution: 'University of the Witwatersrand (Wits)',
-              focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
-            },
-            {
-              degree: 'BSc (Actuarial Science) + AI/Statistics',
-              institution: '—',
-              focus: 'Quantitative finance, time-series modeling, ML/AI'
-            }
-          ],
-          emails: ['abdullah.hassan@globalnext.rocks'],
-          phones: ['+27 82 551 1243'],
-          links: {
-            website: '',
-            github: '',
-            linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
-            twitter: ''
-          }
-        }
-        setProfile(mockData)
+        setIsLoading(false)
+        return
       }
     } catch (error) {
-      console.error('Error loading profile:', error)
-      // Use default data on error
-      const mockData: ProfileData = {
-        fullName: 'Abdullah Hassan',
-        headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
-        location: 'United Arab Emirates (Dubai)',
-        summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-        currentFocus: [
-          'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
-          'Global Marketplace — import/export & containerized trade portal',
-          'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
-        ],
-        education: [
-          {
-            degree: 'MSc (Mathematical Statistics), in progress',
-            institution: 'University of the Witwatersrand (Wits)',
-            focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
-          },
-          {
-            degree: 'BSc (Actuarial Science) + AI/Statistics',
-            institution: '—',
-            focus: 'Quantitative finance, time-series modeling, ML/AI'
-          }
-        ],
-        emails: ['abdullah.hassan@globalnext.rocks'],
-        phones: ['+27 82 551 1243'],
-        links: {
-          website: '',
-          github: '',
-          linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
-          twitter: ''
+      console.log('API not available, using localStorage fallback')
+    }
+
+    // Fallback to localStorage (static export mode)
+    try {
+      if (typeof window !== 'undefined') {
+        const localData = localStorage.getItem('admin_profile_data')
+        if (localData) {
+          setProfile(JSON.parse(localData))
+          setIsLoading(false)
+          return
         }
       }
-      setProfile(mockData)
-    } finally {
-      setIsLoading(false)
+    } catch (error) {
+      console.log('No localStorage data found')
     }
+
+    // Final fallback to default data
+    const mockData: ProfileData = {
+      fullName: 'Abdullah Hassan',
+      headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
+      location: 'United Arab Emirates (Dubai)',
+      summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
+      currentFocus: [
+        'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
+        'Global Marketplace — import/export & containerized trade portal',
+        'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
+      ],
+      education: [
+        {
+          degree: 'MSc (Mathematical Statistics), in progress',
+          institution: 'University of the Witwatersrand (Wits)',
+          focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
+        },
+        {
+          degree: 'BSc (Actuarial Science) + AI/Statistics',
+          institution: '—',
+          focus: 'Quantitative finance, time-series modeling, ML/AI'
+        }
+      ],
+      emails: ['abdullah.hassan@globalnext.rocks'],
+      phones: ['+27 82 551 1243'],
+      links: {
+        website: '',
+        github: '',
+        linkedin: 'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
+        twitter: ''
+      }
+    }
+    setProfile(mockData)
+    setIsLoading(false)
   }
 
   const handleSave = async () => {
@@ -144,6 +128,7 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
     setError('')
 
     try {
+      // Try API first (development mode)
       const response = await fetch('/api/admin/profile', {
         method: 'POST',
         headers: {
@@ -155,15 +140,23 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
       if (response.ok) {
         const result = await response.json()
         setSaveStatus('success')
-        console.log('Profile saved successfully:', result)
-      } else {
-        const error = await response.json()
-        console.error('Failed to save profile:', error)
-        setSaveStatus('error')
-        setError(error.error || 'Unknown error occurred')
+        console.log('Profile saved successfully via API:', result)
+        setIsSaving(false)
+        return
       }
     } catch (error) {
-      console.error('Error saving profile:', error)
+      console.log('API not available, using localStorage fallback')
+    }
+
+    // Fallback to localStorage (static export mode)
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('admin_profile_data', JSON.stringify(profile))
+        setSaveStatus('success')
+        console.log('Profile saved to localStorage (static export mode)')
+      }
+    } catch (error) {
+      console.error('Error saving to localStorage:', error)
       setSaveStatus('error')
       setError('Failed to save profile. Please try again.')
     } finally {
@@ -256,12 +249,18 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
         </div>
       </div>
 
+      {/* Data Export Helper for Static Export Mode */}
+      <DataExportHelper />
+
       {/* Save Status */}
       {saveStatus === 'success' && (
         <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-4 text-green-400">
           <div className="font-semibold mb-2">✅ Profile saved successfully!</div>
           <div className="text-sm">
-            Changes have been automatically applied to your main site.
+            {typeof window !== 'undefined' && localStorage.getItem('admin_profile_data') 
+              ? 'Changes saved locally. Use the export options below to apply to your main site.'
+              : 'Changes have been automatically applied to your main site.'
+            }
           </div>
         </div>
       )}
