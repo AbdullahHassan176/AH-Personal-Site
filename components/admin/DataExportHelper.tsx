@@ -5,12 +5,18 @@ import { useState, useEffect } from 'react'
 export function DataExportHelper() {
   const [showHelper, setShowHelper] = useState(false)
   const [hasData, setHasData] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Check localStorage after component mounts to avoid hydration issues
     const profileData = localStorage.getItem('admin_profile_data')
     setHasData(!!profileData)
   }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   const exportData = () => {
     const profileData = localStorage.getItem('admin_profile_data')

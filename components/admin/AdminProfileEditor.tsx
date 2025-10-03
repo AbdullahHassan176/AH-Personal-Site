@@ -50,9 +50,11 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
   const [isSaving, setIsSaving] = useState(false)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [error, setError] = useState('')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Load profile data
+    setMounted(true)
+    // Load profile data only after component mounts
     loadProfileData()
   }, [])
 
@@ -249,7 +251,7 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
     }))
   }
 
-  if (isLoading) {
+  if (!mounted || isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center">

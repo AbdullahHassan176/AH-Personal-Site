@@ -13,8 +13,10 @@ export default function AdminPage() {
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('dashboard')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Check if user is authenticated
     const authToken = localStorage.getItem('admin_auth')
     const adminUser = localStorage.getItem('admin_user')
@@ -27,7 +29,7 @@ export default function AdminPage() {
     setIsLoading(false)
   }, [])
 
-  if (isLoading) {
+  if (!mounted || isLoading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
