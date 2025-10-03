@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { DataExportHelper } from './DataExportHelper'
 
 interface ProfileData {
   fullName: string
@@ -57,6 +58,14 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
 
   const loadProfileData = async () => {
     try {
+      // First check localStorage for static export mode
+      const localData = localStorage.getItem('admin_profile_data')
+      if (localData) {
+        setProfile(JSON.parse(localData))
+        setIsLoading(false)
+        return
+      }
+
       const response = await fetch('/api/admin/profile')
       if (response.ok) {
         const data = await response.json()
@@ -163,8 +172,17 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
       }
     } catch (error) {
       console.error('Error saving profile:', error)
-      setSaveStatus('error')
-      setError('Network error: Unable to connect to server. This might be due to static export mode.')
+      
+      // Fallback: Save to localStorage for static export mode
+      try {
+        localStorage.setItem('admin_profile_data', JSON.stringify(profile))
+        setSaveStatus('success')
+        setError('')
+        console.log('Profile saved to localStorage (static export mode)')
+      } catch (localStorageError) {
+        setSaveStatus('error')
+        setError('Network error: Unable to connect to server. This might be due to static export mode.')
+      }
     } finally {
       setIsSaving(false)
     }
@@ -255,10 +273,27 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
         </div>
       </div>
 
+      {/* Data Export Helper */}
+      <DataExportHelper />
+
       {/* Save Status */}
       {saveStatus === 'success' && (
         <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-4 text-green-400">
-          ✅ Profile saved successfully! Changes will appear on your main site.
+          <div className="font-semibold mb-2">✅ Profile saved successfully!</div>
+          <div className="text-sm">
+            {localStorage.getItem('admin_profile_data') ? 
+              'Changes saved locally. To apply to your main site, copy the data from localStorage to your /data/profile.json file.' :
+              'Changes will appear on your main site.'
+            }
+          </div>
+          {localStorage.getItem('admin_profile_data') && (
+            <div className="mt-3 p-3 bg-gray-800 rounded-lg">
+              <div className="text-xs text-gray-300 mb-2">Copy this data to /data/profile.json:</div>
+              <pre className="text-xs text-green-300 overflow-x-auto">
+                {JSON.stringify(JSON.parse(localStorage.getItem('admin_profile_data') || '{}'), null, 2)}
+              </pre>
+            </div>
+          )}
         </div>
       )}
 
