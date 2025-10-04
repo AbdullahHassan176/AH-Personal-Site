@@ -52,18 +52,34 @@ export function HeroSection({ profile, images }: HeroSectionProps) {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold hover-glow transition-all">
-              <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <a 
+              href="/ventures" 
+              className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold hover-glow transition-all inline-flex items-center justify-center"
+            >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
               </svg>
               Explore Ventures
-            </button>
-            <button className="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-medium hover:border-yellow-400 hover:text-yellow-400 transition-all">
-              <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+            </a>
+            <a 
+              href="/about" 
+              className="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-medium hover:border-yellow-400 hover:text-yellow-400 transition-all inline-flex items-center justify-center"
+            >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
               </svg>
               About Me
-            </button>
+            </a>
+            <a 
+              href="#contact" 
+              className="border border-teal-400 text-teal-400 px-8 py-4 rounded-full font-medium hover:bg-teal-400 hover:text-gray-900 transition-all inline-flex items-center justify-center"
+            >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              Contact Me
+            </a>
           </div>
         </div>
         

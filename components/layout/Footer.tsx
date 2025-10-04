@@ -53,7 +53,7 @@ export function Footer() {
               <li><a href="/skills" className="hover:text-yellow-400 transition-colors cursor-pointer">Skills</a></li>
               <li><a href="/ventures" className="hover:text-yellow-400 transition-colors cursor-pointer">Ventures</a></li>
               <li><a href="/portfolio" className="hover:text-yellow-400 transition-colors cursor-pointer">Portfolio</a></li>
-              <li><a href="#contact" className="hover:text-yellow-400 transition-colors cursor-pointer">Contact</a></li>
+              <li><a href="/contact" className="hover:text-yellow-400 transition-colors cursor-pointer">Contact</a></li>
             </ul>
           </div>
           
