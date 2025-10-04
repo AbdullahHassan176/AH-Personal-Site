@@ -1,19 +1,39 @@
+'use client'
+
+import { useState } from 'react'
 import { SkillsHeader } from '@/components/sections/SkillsHeader'
 import { TechnicalSkills } from '@/components/sections/TechnicalSkills'
 import { SoftSkills } from '@/components/sections/SoftSkills'
 import { SkillsMatrix } from '@/components/sections/SkillsMatrix'
 
-export const metadata = {
-  title: 'Skills Dashboard - Abdullah Hassan',
-  description: 'Interactive visualization of technical expertise and soft skills across AI, finance, leadership, and innovation domains.',
-}
-
 export default function SkillsPage() {
+  const [isTechnical, setIsTechnical] = useState(true)
+  const [viewMode, setViewMode] = useState('radial')
+
+  const handleToggleSkills = (isTechnical: boolean) => {
+    setIsTechnical(isTechnical)
+  }
+
+  const handleToggleView = (viewMode: string) => {
+    setViewMode(viewMode)
+  }
+
   return (
     <>
-      <SkillsHeader />
-      <TechnicalSkills />
-      <SoftSkills />
+      <SkillsHeader 
+        onToggleSkills={handleToggleSkills}
+        onToggleView={handleToggleView}
+        isTechnical={isTechnical}
+        viewMode={viewMode}
+      />
+      <TechnicalSkills 
+        isVisible={isTechnical}
+        viewMode={viewMode}
+      />
+      <SoftSkills 
+        isVisible={!isTechnical}
+        viewMode={viewMode}
+      />
       <SkillsMatrix />
     </>
   )

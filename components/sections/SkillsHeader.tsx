@@ -2,10 +2,14 @@
 
 import { useState } from 'react'
 
-export function SkillsHeader() {
-  const [isTechnical, setIsTechnical] = useState(true)
-  const [viewMode, setViewMode] = useState('radial')
+interface SkillsHeaderProps {
+  onToggleSkills: (isTechnical: boolean) => void
+  onToggleView: (viewMode: string) => void
+  isTechnical: boolean
+  viewMode: string
+}
 
+export function SkillsHeader({ onToggleSkills, onToggleView, isTechnical, viewMode }: SkillsHeaderProps) {
   return (
     <section id="dashboard-header" className="pt-24 pb-12 bg-gray-900">
       <div className="max-w-7xl mx-auto px-6">
@@ -21,21 +25,25 @@ export function SkillsHeader() {
         {/* Toggle Controls */}
         <div className="flex justify-center items-center space-x-8 mb-8">
           <div className="flex items-center space-x-4">
-            <span className="text-gray-300 font-medium">Technical Skills</span>
+            <span className={`font-medium transition-colors ${isTechnical ? 'text-yellow-400' : 'text-gray-300'}`}>
+              Technical Skills
+            </span>
             <label className="toggle-switch">
               <input 
                 type="checkbox" 
                 checked={!isTechnical}
-                onChange={() => setIsTechnical(!isTechnical)}
+                onChange={() => onToggleSkills(!isTechnical)}
               />
               <span className="toggle-slider"></span>
             </label>
-            <span className="text-gray-300 font-medium">Soft Skills</span>
+            <span className={`font-medium transition-colors ${!isTechnical ? 'text-yellow-400' : 'text-gray-300'}`}>
+              Soft Skills
+            </span>
           </div>
           
           <div className="flex items-center space-x-4">
             <button 
-              onClick={() => setViewMode(viewMode === 'radial' ? 'bar' : 'radial')}
+              onClick={() => onToggleView(viewMode === 'radial' ? 'bar' : 'radial')}
               className="bg-yellow-400 text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-yellow-500 transition-colors"
             >
               <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">

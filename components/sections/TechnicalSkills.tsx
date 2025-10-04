@@ -2,7 +2,12 @@
 
 import { useEffect, useRef } from 'react'
 
-export function TechnicalSkills() {
+interface TechnicalSkillsProps {
+  isVisible: boolean
+  viewMode: string
+}
+
+export function TechnicalSkills({ isVisible, viewMode }: TechnicalSkillsProps) {
   const progressBarsRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
@@ -81,45 +86,65 @@ export function TechnicalSkills() {
     }
   ]
 
+  if (!isVisible) return null
+
   return (
     <section id="technical-skills" className="py-12 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
           {skills.map((skill, index) => (
             <div key={skill.name} className="skill-card rounded-2xl p-8 text-center hover-glow">
-              <div className="relative w-32 h-32 mx-auto mb-6">
-                <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="none"
-                    className="text-gray-700"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray={`${skill.percentage * 2.51} 251`}
-                    strokeDashoffset="0"
-                    className={`text-${skill.color}-400 transition-all duration-1000`}
-                    style={{
-                      strokeDasharray: `${skill.percentage * 2.51} 251`,
-                      strokeDashoffset: 0
-                    }}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className={`text-${skill.color}-400 text-2xl font-bold`}>
-                    {skill.percentage}%
-                  </span>
+              {viewMode === 'radial' ? (
+                // Radial View
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="none"
+                      className="text-gray-700"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${skill.percentage * 2.51} 251`}
+                      strokeDashoffset="0"
+                      className={`text-${skill.color}-400 transition-all duration-1000`}
+                      style={{
+                        strokeDasharray: `${skill.percentage * 2.51} 251`,
+                        strokeDashoffset: 0
+                      }}
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className={`text-${skill.color}-400 text-2xl font-bold`}>
+                      {skill.percentage}%
+                    </span>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                // Bar View
+                <div className="w-full mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-white font-semibold">{skill.name}</span>
+                    <span className={`text-${skill.color}-400 font-bold`}>{skill.percentage}%</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-3">
+                    <div 
+                      ref={el => { progressBarsRef.current[index] = el }}
+                      className={`bg-${skill.color}-400 h-3 rounded-full transition-all duration-1000`}
+                      style={{width: `${skill.percentage}%`}}
+                    ></div>
+                  </div>
+                </div>
+              )}
               
               <h3 className="text-2xl font-bold text-white mb-2">{skill.name}</h3>
               <p className="text-gray-400 mb-4">{skill.description}</p>
