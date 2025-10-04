@@ -1,0 +1,31 @@
+{
+  "routes": [
+    {
+      "route": "/admin/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*.{png,jpg,jpeg,gif,svg,ico,webp}", "/favicon.ico", "/robots.txt", "/sitemap.xml"]
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".yaml": "text/yaml",
+    ".yml": "text/yaml"
+  },
+  "globalHeaders": {
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "origin-when-cross-origin"
+  }
+}

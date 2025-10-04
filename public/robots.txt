@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://abdullahhassan.azurestaticapps.net/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /api/
