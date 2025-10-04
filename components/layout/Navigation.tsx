@@ -41,7 +41,7 @@ export function Navigation() {
             <a href="/about" className="text-gray-300 hover:text-yellow-400 transition-colors font-medium">About</a>
             <a href="/projects" className="text-gray-300 hover:text-yellow-400 transition-colors font-medium">Projects</a>
             <a href="/skills" className="text-gray-300 hover:text-yellow-400 transition-colors font-medium">Skills</a>
-            <a href="#contact" className="border border-yellow-400 text-yellow-400 px-6 py-2 rounded-full hover:bg-yellow-400 hover:text-gray-900 transition-all hover-glow">
+            <a href="/contact" className="border border-yellow-400 text-yellow-400 px-6 py-2 rounded-full hover:bg-yellow-400 hover:text-gray-900 transition-all hover-glow">
               Contact
             </a>
             <a href="/admin/login" className="text-gray-400 hover:text-gray-300 transition-colors text-sm">
