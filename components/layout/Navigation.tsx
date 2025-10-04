@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
-import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -47,7 +46,6 @@ export function Navigation() {
             <a href="/admin/login" className="text-gray-400 hover:text-gray-300 transition-colors text-sm">
               Admin
             </a>
-            <ThemeToggle />
           </div>
           <button className="md:hidden text-gray-300">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
