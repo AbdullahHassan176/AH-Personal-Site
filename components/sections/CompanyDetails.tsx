@@ -38,7 +38,7 @@ export function CompanyDetails() {
     },
     {
       name: 'Unamani AI Platform',
-      logo: '⚡',
+      logo: '→',
       industry: 'FinTech & Blockchain',
       founded: '2022',
       headquarters: 'London, UK',

@@ -64,11 +64,11 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                 <div className="flex-1">
                   <div className="flex items-center mb-4">
                     <div className={`w-12 h-12 bg-${getColor(project.category)}-400 rounded-xl flex items-center justify-center mr-4 text-2xl`}>
-                      {project.category === 'Web3 / Tokenization' && '⚡'}
-                      {project.category === 'AI & Quant Research' && '🧠'}
-                      {project.category === 'Logistics' && '🌍'}
-                      {project.category === 'FinTech' && '💰'}
-                      {project.category === 'Web' && '🌐'}
+                      {project.category === 'Web3 / Tokenization' && '→'}
+                      {project.category === 'AI & Quant Research' && '→'}
+                      {project.category === 'Logistics' && '→'}
+                      {project.category === 'FinTech' && '→'}
+                      {project.category === 'Web' && '→'}
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-2">{project.name}</h3>

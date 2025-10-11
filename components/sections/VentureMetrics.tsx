@@ -140,9 +140,9 @@ export function VentureMetrics() {
                 <div className="text-center mb-6">
                   <h4 className="text-xl font-bold text-white mb-2">{venture.venture}</h4>
                   <div className={`w-12 h-12 bg-${venture.color}-400 rounded-xl flex items-center justify-center mx-auto text-2xl`}>
-                    {index === 0 && '🧠'}
-                    {index === 1 && '🌍'}
-                    {index === 2 && '⚡'}
+                    {index === 0 && '→'}
+                    {index === 1 && '→'}
+                    {index === 2 && '→'}
                   </div>
                 </div>
                 

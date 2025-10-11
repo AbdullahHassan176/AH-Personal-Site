@@ -66,13 +66,13 @@ export default function AdminPage() {
   }
 
   const tabs = [
-    { id: 'dashboard', label: 'Dashboard', icon: '📊' },
-    { id: 'profile', label: 'Profile', icon: '👤' },
-    { id: 'experience', label: 'Experience', icon: '💼' },
-    { id: 'projects', label: 'Projects', icon: '🚀' },
-    { id: 'skills', label: 'Skills', icon: '⚡' },
-    { id: 'writing', label: 'Writing', icon: '✍️' },
-    { id: 'contact', label: 'Contact', icon: '📞' },
+    { id: 'dashboard', label: 'Dashboard', icon: '→' },
+    { id: 'profile', label: 'Profile', icon: '→' },
+    { id: 'experience', label: 'Experience', icon: '→' },
+    { id: 'projects', label: 'Projects', icon: '→' },
+    { id: 'skills', label: 'Skills', icon: '→' },
+    { id: 'writing', label: 'Writing', icon: '→' },
+    { id: 'contact', label: 'Contact', icon: '→' },
   ]
 
   return (

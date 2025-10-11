@@ -4,11 +4,14 @@ import { LogosSection } from '@/components/sections/LogosSection'
 import { GallerySection } from '@/components/sections/GallerySection'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { readJSON } from '@/lib/server-data'
+import { generateMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = generateMetadata({
   title: 'Abdullah Hassan - Quant-minded AI & Analytics Leader',
-  description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-}
+  description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization. Founder of Global Next and Unamani AI.',
+  keywords: ['AI Leader', 'Quantitative Finance', 'Entrepreneur', 'Technology Innovation', 'Data Analytics'],
+  type: 'website',
+})
 
 export default function HomePage() {
   const profile = readJSON('profile.json')

@@ -4,6 +4,8 @@ import './globals.css'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { Analytics } from '@/components/Analytics'
+import { generateMetadata as generateSEOMetadata, generateStructuredData } from '@/lib/seo'
+import { PerformanceOptimization, CriticalCSS } from '@/components/PerformanceOptimization'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -15,66 +17,36 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 })
 
-export const metadata: Metadata = {
-  title: 'Abdullah Hassan - Quant-minded AI & Analytics Leader',
-  description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.ico',
-  },
-  keywords: ['Abdullah Hassan', 'Entrepreneur', 'AI Specialist', 'Finance', 'Ventures', 'Global Next', 'Unamani AI'],
-  authors: [{ name: 'Abdullah Hassan' }],
-  creator: 'Abdullah Hassan',
-  publisher: 'Abdullah Hassan',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  openGraph: {
-    title: 'Abdullah Hassan - Quant-minded AI & Analytics Leader',
-    description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-    siteName: 'Abdullah Hassan',
-    images: [
-      {
-        url: '/images/DSCF6400.JPG',
-        width: 1200,
-        height: 630,
-        alt: 'Abdullah Hassan - Professional Portrait',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Abdullah Hassan - Quant-minded AI & Analytics Leader',
-    description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
-    images: ['/images/DSCF6400.JPG'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-}
+export const metadata: Metadata = generateSEOMetadata()
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const structuredData = generateStructuredData()
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <CriticalCSS />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL || 'https://abdullahhassan.azurestaticapps.net'} />
+        <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION || ''} />
+        <meta name="msvalidate.01" content={process.env.BING_VERIFICATION || ''} />
+        <meta name="yandex-verification" content={process.env.YANDEX_VERIFICATION || ''} />
+        <meta name="yahoo-site-verification" content={process.env.YAHOO_VERIFICATION || ''} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/images/DSCF6400.JPG" as="image" />
+      </head>
       <body className="bg-gray-900 text-white font-inter">
+        <PerformanceOptimization />
         <Navigation />
         <main>{children}</main>
         <Footer />

@@ -6,15 +6,15 @@ export function LogosSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   
   const logos = [
-    { name: "Azure", icon: "☁️" },
-    { name: "Python", icon: "🐍" },
-    { name: "R", icon: "📊" },
-    { name: "TensorFlow", icon: "🧠" },
-    { name: "Chainlink", icon: "⛓️" },
-    { name: "Cosmos DB", icon: "🌌" },
-    { name: "Deloitte", icon: "🏢" },
-    { name: "Wits", icon: "🎓" },
-    { name: "UAE", icon: "🇦🇪" }
+    { name: "Azure", icon: "→" },
+    { name: "Python", icon: "→" },
+    { name: "R", icon: "→" },
+    { name: "TensorFlow", icon: "→" },
+    { name: "Chainlink", icon: "→" },
+    { name: "Cosmos DB", icon: "→" },
+    { name: "Deloitte", icon: "→" },
+    { name: "Wits", icon: "→" },
+    { name: "UAE", icon: "→" }
   ]
 
   useEffect(() => {

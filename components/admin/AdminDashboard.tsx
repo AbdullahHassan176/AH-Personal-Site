@@ -33,7 +33,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
     {
       title: 'Add New Project',
       description: 'Create a new project entry',
-      icon: '🚀',
+      icon: '→',
       action: () => onNavigate?.('projects'),
     },
     {
@@ -45,7 +45,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
     {
       title: 'Edit Skills',
       description: 'Add or modify technical skills',
-      icon: '⚡',
+      icon: '→',
       action: () => onNavigate?.('skills'),
     },
     {
@@ -108,7 +108,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
         >
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Projects</h3>
-            <span className="text-2xl">🚀</span>
+            <span className="text-2xl">→</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Entries: {stats.projects.count}</div>
@@ -125,7 +125,7 @@ export function AdminDashboard({ onNavigate }: AdminDashboardProps) {
         >
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-white group-hover:text-yellow-400 transition-colors">Skills</h3>
-            <span className="text-2xl">⚡</span>
+            <span className="text-2xl">→</span>
           </div>
           <div className="space-y-2">
             <div className="text-sm text-gray-400">Total Skills: {stats.skills.count}</div>

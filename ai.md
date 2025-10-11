@@ -76,6 +76,16 @@ ANALYTICS_ID=
 - E2E tests for critical user flows
 - Performance testing for animations
 
+## SEO Implementation
+- **Comprehensive metadata** optimization for all pages
+- **Dynamic sitemap.xml** generation with proper priorities
+- **Optimized robots.txt** with search engine directives
+- **JSON-LD structured data** for rich snippets
+- **Performance optimization** with service worker and lazy loading
+- **PWA support** with manifest.json and browser config
+- **Security headers** and Core Web Vitals optimization
+- **Search engine verification** meta tags for GSC, Bing, Yandex, Yahoo
+
 ## Global Instructions
 - Maintain consistent color scheme (yellow/gold primary)
 - Use professional typography (Playfair Display + Inter)
@@ -83,4 +93,6 @@ ANALYTICS_ID=
 - Ensure accessibility compliance
 - Optimize for performance and SEO
 - Keep code modular and reusable
+- Follow SEO best practices for all new content
+- Use structured data for enhanced search visibility
 

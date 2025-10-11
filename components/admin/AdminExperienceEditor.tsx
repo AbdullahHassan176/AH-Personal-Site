@@ -178,7 +178,7 @@ export function AdminExperienceEditor({ onBack }: AdminExperienceEditorProps) {
       {/* Save Status */}
       {saveStatus === 'success' && (
         <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-4 text-green-400">
-          <div className="font-semibold mb-2">✅ Experience saved successfully!</div>
+          <div className="font-semibold mb-2">Experience saved successfully!</div>
           <div className="text-sm">
             {typeof window !== 'undefined' && localStorage.getItem('admin_experience_data') 
               ? 'Changes saved locally. Use the export options below to apply to your main site.'
@@ -190,7 +190,7 @@ export function AdminExperienceEditor({ onBack }: AdminExperienceEditorProps) {
 
       {saveStatus === 'error' && (
         <div className="bg-red-900/20 border border-red-400/30 rounded-xl p-4 text-red-400">
-          <div className="font-semibold mb-2">❌ Failed to save experience</div>
+          <div className="font-semibold mb-2">Failed to save experience</div>
           <div className="text-sm">{error || 'Please try again.'}</div>
         </div>
       )}

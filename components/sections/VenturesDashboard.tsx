@@ -61,7 +61,7 @@ export function VenturesDashboard() {
         app: 'Mobile'
       },
       color: 'purple',
-      logo: '⚡',
+      logo: '→',
       achievements: [
         'Tokenized $850K in real-world assets',
         '2,340 active users',

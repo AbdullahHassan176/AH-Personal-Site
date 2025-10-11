@@ -2,17 +2,17 @@
 
 A modern, professional personal website built with Next.js 14, TypeScript, and Tailwind CSS. Showcasing ventures, portfolio, and expertise in AI, finance, and entrepreneurship.
 
-## 🚀 Features
+## Features
 
 - **Modern Tech Stack**: Next.js 14, TypeScript, Tailwind CSS
 - **Interactive Components**: Animated hero section, expandable venture cards, skills dashboard
-- **Portfolio Showcase**: Filterable project grid with AI random showcase
+- **Portfolio Showcase**: Filterable project grid with random showcase
 - **Contact Form**: Resend email integration
 - **Responsive Design**: Mobile-first approach with smooth animations
 - **SEO Optimized**: Meta tags, Open Graph, Twitter cards
 - **Performance**: Optimized images, lazy loading, smooth scrolling
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript
@@ -22,7 +22,7 @@ A modern, professional personal website built with Next.js 14, TypeScript, and T
 - **Email**: Resend
 - **Deployment**: Vercel
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -56,7 +56,7 @@ A modern, professional personal website built with Next.js 14, TypeScript, and T
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 ├── app/                    # Next.js App Router
@@ -74,7 +74,7 @@ A modern, professional personal website built with Next.js 14, TypeScript, and T
 └── public/               # Static assets
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Colors
 The website uses a custom color scheme with yellow/gold as the primary color. You can modify colors in `tailwind.config.js` and `app/globals.css`.
@@ -89,7 +89,7 @@ The website uses a custom color scheme with yellow/gold as the primary color. Yo
 - Component styles use Tailwind CSS classes
 - Responsive breakpoints follow Tailwind's default system
 
-## 📧 Contact Form Setup
+## Contact Form Setup
 
 1. **Get a Resend API key**
    - Sign up at [resend.com](https://resend.com)
@@ -100,7 +100,7 @@ The website uses a custom color scheme with yellow/gold as the primary color. Yo
    - Update `NEXT_PUBLIC_CONTACT_EMAIL` in your environment variables
    - Modify the email template in `app/api/contact/route.ts`
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 1. Push your code to GitHub
@@ -115,7 +115,7 @@ The project can be deployed to any platform that supports Next.js:
 - Railway
 - DigitalOcean App Platform
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run tests
@@ -128,7 +128,7 @@ npm run test:watch
 npm run test:coverage
 ```
 
-## 📝 Scripts
+## Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
@@ -136,7 +136,7 @@ npm run test:coverage
 - `npm run lint` - Run ESLint
 - `npm test` - Run tests
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -144,11 +144,11 @@ npm run test:coverage
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 📞 Support
+## Support
 
 For questions or support, please contact:
 - Email: abdullah.hassan@globalnext.rocks

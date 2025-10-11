@@ -10,7 +10,7 @@ export function HighlightsSection() {
     {
       title: "Tokenization & Web3 Builder", 
       description: "Architecting tokenization ecosystems for logistics and real estate, with investor/issuer portals and compliance-ready data models.",
-      icon: "⚡",
+      icon: "→",
       color: "purple",
       metrics: ["$850K assets tokenized", "2,340 active users", "15,670 transactions"]
     },
