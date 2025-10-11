@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export for Azure Static Web Apps
-  output: 'export',
+  // Azure Static Web Apps with Azure Functions
   trailingSlash: true,
   images: {
     unoptimized: true,

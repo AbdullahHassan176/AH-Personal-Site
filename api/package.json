@@ -1,0 +1,9 @@
+{
+  "name": "ah-personal-site-api",
+  "version": "1.0.0",
+  "description": "Azure Functions for Abdullah Hassan Personal Site",
+  "main": "index.js",
+  "dependencies": {
+    "resend": "^2.0.0"
+  }
+}

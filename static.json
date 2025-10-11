@@ -5,7 +5,11 @@
       "allowedRoles": ["authenticated"]
     },
     {
-      "route": "/api/*",
+      "route": "/api/contact",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/admin/*",
       "allowedRoles": ["authenticated"]
     },
     {
