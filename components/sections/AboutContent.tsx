@@ -20,11 +20,11 @@ export function AboutContent({ profile }: AboutContentProps) {
               </p>
               
               <p>
-                My approach combines deep technical expertise with entrepreneurial vision, creating solutions that not only work today but are designed to scale and adapt to tomorrow's challenges. I believe in the power of AI to democratize access to advanced financial tools and create more efficient global trade systems.
+                My approach combines deep technical expertise with entrepreneurial vision, creating solutions that not only work today but are designed to scale and adapt to tomorrow&apos;s challenges. I believe in the power of AI to democratize access to advanced financial tools and create more efficient global trade systems.
               </p>
               
               <p>
-                Beyond business, I'm committed to sharing knowledge through speaking engagements, research publications, and mentoring the next generation of entrepreneurs. My goal is to build a future where technology serves humanity's greatest needs.
+                Beyond business, I&apos;m committed to sharing knowledge through speaking engagements, research publications, and mentoring the next generation of entrepreneurs. My goal is to build a future where technology serves humanity&apos;s greatest needs.
               </p>
             </div>
           </div>
