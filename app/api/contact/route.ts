@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if Resend is properly configured
+    console.log('RESEND_API_KEY:', process.env.RESEND_API_KEY ? 'Set' : 'Not set')
     if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'demo_key') {
       console.log('Resend API key not configured, simulating email send')
       return NextResponse.json(
