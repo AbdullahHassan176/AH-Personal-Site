@@ -127,8 +127,8 @@ export function ContactInfo({ contact }: ContactInfoProps) {
           </a>
           
           <a 
-            href="https://calendly.com/unamani-globalnext/chat-with-abdullah" 
-            target="_blank" 
+            href={contact.calendar || '#'}
+            target="_blank"
             rel="noopener noreferrer"
             className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors"
           >

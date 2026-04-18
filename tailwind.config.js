@@ -98,6 +98,10 @@ module.exports = {
           "0%, 100%": { boxShadow: "0 0 15px rgba(212, 175, 55, 0.3)" },
           "50%": { boxShadow: "0 0 25px rgba(212, 175, 55, 0.6)" },
         },
+        "marquee": {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -109,6 +113,7 @@ module.exports = {
         "float": "float 6s ease-in-out infinite",
         "pulse": "pulse 2s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "marquee": "marquee 30s linear infinite",
       },
       fontFamily: {
         'playfair': ['Playfair Display', 'serif'],
@@ -116,6 +121,14 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    // Dynamic color classes used throughout components
+    { pattern: /^bg-(yellow|teal|purple|green|blue)-400$/ },
+    { pattern: /^bg-(yellow|teal|purple|green|blue)-400\/10$/ },
+    { pattern: /^text-(yellow|teal|purple|green|blue)-400$/ },
+    { pattern: /^border-(yellow|teal|purple|green|blue)-400$/ },
+    { pattern: /^border-(yellow|teal|purple|green|blue)-400$/, variants: ['hover'] },
+  ],
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }
 

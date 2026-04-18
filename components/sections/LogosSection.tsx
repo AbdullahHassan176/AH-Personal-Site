@@ -1,72 +1,63 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+const techItems = [
+  { name: 'Python',          dot: '#3776AB' },
+  { name: 'R',               dot: '#276DC3' },
+  { name: 'TypeScript',      dot: '#3178C6' },
+  { name: 'TensorFlow',      dot: '#FF6F00' },
+  { name: 'PyTorch',         dot: '#EE4C2C' },
+  { name: 'Next.js',         dot: '#ffffff' },
+  { name: 'React',           dot: '#61DAFB' },
+  { name: 'Vue',             dot: '#4FC08D' },
+  { name: 'Azure',           dot: '#0078D4' },
+  { name: 'Cosmos DB',       dot: '#0089D6' },
+  { name: 'GitHub Actions',  dot: '#2088FF' },
+  { name: 'Docker',          dot: '#2496ED' },
+  { name: 'Chainlink',       dot: '#375BD2' },
+  { name: 'Power BI',        dot: '#F2C811' },
+  { name: 'rugarch',         dot: '#276DC3' },
+  { name: 'nflows',          dot: '#EE4C2C' },
+  { name: 'Deloitte',        dot: '#86BC25' },
+  { name: 'Wits University', dot: '#D4AF37' },
+]
+
+// Duplicate so the marquee loops seamlessly
+const doubled = [...techItems, ...techItems]
 
 export function LogosSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  
-  const logos = [
-    { name: "Azure", icon: "→" },
-    { name: "Python", icon: "→" },
-    { name: "R", icon: "→" },
-    { name: "TensorFlow", icon: "→" },
-    { name: "Chainlink", icon: "→" },
-    { name: "Cosmos DB", icon: "→" },
-    { name: "Deloitte", icon: "→" },
-    { name: "Wits", icon: "→" },
-    { name: "UAE", icon: "→" }
-  ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % logos.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [logos.length])
-
   return (
-    <section className="py-16 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-playfair font-bold mb-4 text-white">
-            Technologies & <span className="text-yellow-400">Partnerships</span>
-          </h2>
-          <p className="text-gray-400">Key technologies and organizations I work with</p>
-        </div>
-        
-        <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-8">
-          {logos.map((logo, index) => (
-            <div 
-              key={index}
-              className={`text-center transition-all duration-500 ${
-                index === currentIndex 
-                  ? 'scale-110 opacity-100' 
-                  : 'scale-90 opacity-60'
-              }`}
+    <section className="py-16 bg-gray-900 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
+        <h2 className="text-3xl font-playfair font-bold mb-3 text-white">
+          Technologies &amp; <span className="text-yellow-400">Organisations</span>
+        </h2>
+        <p className="text-gray-400">The tools, frameworks, and institutions I work with</p>
+      </div>
+
+      {/* Scrolling ticker */}
+      <div className="relative">
+        {/* Fade-out edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none" />
+
+        <div
+          className="flex gap-4 animate-marquee w-max hover:[animation-play-state:paused]"
+          style={{ willChange: 'transform' }}
+        >
+          {doubled.map((item, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-2 px-5 py-3 bg-gray-800 border border-gray-700 rounded-full whitespace-nowrap select-none hover:border-yellow-400/50 transition-colors duration-200"
             >
-              <div className="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-2 border border-gray-700 hover-glow">
-                <span className="text-2xl">{logo.icon}</span>
-              </div>
-              <p className="text-gray-400 text-sm">{logo.name}</p>
+              <span
+                className="w-2 h-2 rounded-full flex-shrink-0"
+                style={{ backgroundColor: item.dot }}
+              />
+              <span className="text-gray-300 text-sm font-medium">{item.name}</span>
             </div>
           ))}
-        </div>
-        
-        <div className="flex justify-center mt-8">
-          <div className="flex space-x-2">
-            {logos.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-yellow-400' : 'bg-gray-600'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
   )
 }
-
