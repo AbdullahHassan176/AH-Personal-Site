@@ -1,5 +1,4 @@
 import { generateMetadata } from '@/lib/seo'
-import Link from 'next/link'
 
 export const metadata = generateMetadata({
   title: 'Blog - Abdullah Hassan',
@@ -8,34 +7,30 @@ export const metadata = generateMetadata({
   url: '/blog',
 })
 
-// Sample blog posts - in a real implementation, you'd fetch these from a CMS or markdown files
 const blogPosts = [
   {
-    id: 'ai-in-finance-2024',
+    id: 'ai-in-finance',
     title: 'The Future of AI in Quantitative Finance',
-    excerpt: 'Exploring how artificial intelligence is revolutionizing quantitative finance and what it means for the industry.',
-    date: '2024-01-15',
+    excerpt: 'Exploring how artificial intelligence is revolutionizing quantitative finance, from NF-GARCH models to GAN-based synthetic data generation and what it means for risk management.',
+    date: '2025-03-10',
     readTime: '5 min read',
     category: 'AI & Finance',
-    slug: 'ai-in-finance-2024'
   },
   {
     id: 'asset-tokenization-guide',
-    title: 'Complete Guide to Real-World Asset Tokenization',
-    excerpt: 'Understanding the fundamentals of tokenizing real-world assets and the opportunities it presents.',
-    date: '2024-01-10',
+    title: 'Real-World Asset Tokenization: Building the Infrastructure',
+    excerpt: 'A deep dive into the architecture behind tokenizing logistics assets and RWAs — from smart contract design to oracle connectors and investor portals.',
+    date: '2025-02-18',
     readTime: '8 min read',
     category: 'Blockchain',
-    slug: 'asset-tokenization-guide'
   },
   {
     id: 'data-analytics-leadership',
-    title: 'Leading Data Analytics Teams in 2024',
-    excerpt: 'Best practices for building and managing high-performing data analytics teams in today\'s competitive landscape.',
-    date: '2024-01-05',
+    title: 'Leading Data & AI Teams Across Geographies',
+    excerpt: 'Lessons from building and managing high-performing analytics and AI teams spanning South Africa, UAE, and global remote operations.',
+    date: '2025-01-22',
     readTime: '6 min read',
     category: 'Leadership',
-    slug: 'data-analytics-leadership'
   }
 ]
 
@@ -67,10 +62,8 @@ export default function BlogPage() {
                 </span>
               </div>
               
-              <h2 className="text-xl font-bold mb-3 text-white hover:text-yellow-400 transition-colors">
-                <Link href={`/blog/${post.slug}`}>
-                  {post.title}
-                </Link>
+              <h2 className="text-xl font-bold mb-3 text-white">
+                {post.title}
               </h2>
               
               <p className="text-gray-300 mb-4 line-clamp-3">
@@ -95,12 +88,12 @@ export default function BlogPage() {
               I'm working on more in-depth articles about AI, finance, and technology leadership. 
               Subscribe to stay updated!
             </p>
-            <Link 
+            <a
               href="/contact"
               className="inline-block bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
             >
               Get in Touch
-            </Link>
+            </a>
           </div>
         </div>
       </div>

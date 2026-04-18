@@ -194,14 +194,14 @@ export function ContactSection({ contact }: ContactSectionProps) {
                 </div>
                 
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-purple-400 rounded-xl flex items-center mr-4">
+                  <div className="w-12 h-12 bg-purple-400 rounded-xl flex items-center justify-center mr-4">
                     <svg className="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
                     <div className="text-gray-300 font-medium">Location</div>
-                    <div className="text-white">Global Operations</div>
+                    <div className="text-white">UAE · South Africa · Global</div>
                   </div>
                 </div>
               </div>
@@ -224,29 +224,19 @@ export function ContactSection({ contact }: ContactSectionProps) {
                   LinkedIn Profile
                 </a>
                 
-                <a 
-                  href="https://youtube.com/@abdullah-hassan" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-colors flex items-center justify-center"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                  YouTube Channel
-                </a>
-                
-                <a 
-                  href="https://calendly.com/unamani-globalnext/chat-with-abdullah" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors flex items-center justify-center"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                  </svg>
-                  Schedule Meeting
-                </a>
+                {contact.calendar && (
+                  <a
+                    href={contact.calendar}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors flex items-center justify-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                    </svg>
+                    Schedule Meeting
+                  </a>
+                )}
               </div>
             </div>
           </div>

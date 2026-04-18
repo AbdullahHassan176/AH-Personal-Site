@@ -70,8 +70,8 @@ export function HeroSection({ profile, images }: HeroSectionProps) {
               </svg>
               About Me
             </a>
-            <a 
-              href="#contact" 
+            <a
+              href="/contact"
               className="border border-teal-400 text-teal-400 px-8 py-4 rounded-full font-medium hover:bg-teal-400 hover:text-gray-900 transition-all inline-flex items-center justify-center"
             >
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
