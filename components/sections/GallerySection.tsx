@@ -8,22 +8,34 @@ interface GallerySectionProps {
   images: Images
 }
 
-// Curated 5-image selection — excludes DSCF6400 (used as hero portrait),
-// image2.jpeg (peace-sign casual), and DSCF6453 (redundant casual).
+// Natural pixel dimensions — used so next/image renders each photo at its
+// true aspect ratio instead of being force-fitted into a fixed container.
+const DIMS: Record<string, { w: number; h: number }> = {
+  '/images/DSCF6402.JPG': { w: 4160, h: 6240 }, // portrait 2:3
+  '/images/DSCF6428.JPG': { w: 4160, h: 6240 }, // portrait 2:3
+  '/images/DSCF6446.JPG': { w: 6240, h: 4160 }, // landscape 3:2
+  '/images/image0.jpeg':  { w: 3024, h: 4032 }, // portrait 3:4
+  '/images/DSCF6453.JPG': { w: 6240, h: 4160 }, // landscape 3:2
+}
+
 const CURATED_SRCS = [
-  '/images/DSCF6402.JPG',   // featured tall — sitting portrait, warm lounge
-  '/images/DSCF6428.JPG',   // team staircase
-  '/images/DSCF6446.JPG',   // group fun
-  '/images/image0.jpeg',    // formal suit
-  '/images/DSCF6453.JPG',   // casual portrait
+  '/images/DSCF6402.JPG',
+  '/images/DSCF6428.JPG',
+  '/images/DSCF6446.JPG',
+  '/images/image0.jpeg',
+  '/images/DSCF6453.JPG',
 ]
 
-const cardStyle = {
+const cardStyle: React.CSSProperties = {
   borderRadius: '18px',
   border: '1px solid rgba(214,195,163,0.25)',
   boxShadow: '0 4px 16px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.50)',
   transition: 'transform 250ms cubic-bezier(0.4,0,0.2,1), box-shadow 250ms cubic-bezier(0.4,0,0.2,1), border-color 250ms',
-} as React.CSSProperties
+  overflow: 'hidden',
+  breakInside: 'avoid',
+  display: 'block',
+  marginBottom: '16px',
+}
 
 const hoverIn  = (el: HTMLElement) => {
   el.style.transform   = 'translateY(-4px)'
@@ -39,7 +51,6 @@ const hoverOut = (el: HTMLElement) => {
 export function GallerySection({ images }: GallerySectionProps) {
   const [selected, setSelected] = useState<number | null>(null)
 
-  // Build ordered display list from the gallery data
   const displayImages = CURATED_SRCS.map(src =>
     images.gallery.find((img: any) => img.src === src)
   ).filter(Boolean) as Array<{ src: string; alt: string; category: string }>
@@ -67,35 +78,25 @@ export function GallerySection({ images }: GallerySectionProps) {
         </div>
 
         {/*
-          Editorial 5-image grid — perfectly aligned, no masonry gaps.
-          Desktop layout (3 cols, 2 equal rows of 300px):
+          CSS masonry — each image renders at its natural aspect ratio so nothing
+          gets cropped or stretched. Portraits stay tall, landscapes stay wide.
+          The browser balances column heights automatically.
 
-          ┌──────────────────┬──────────────┬──────────────┐
-          │                  │   [1] team   │   [2] group  │
-          │  [0] portrait    ├──────────────┼──────────────┤
-          │     (tall)       │   [3] suit   │  [4] casual  │
-          └──────────────────┴──────────────┴──────────────┘
+          Desktop: 3 columns  |  Tablet: 2 columns  |  Mobile: 1 column
         */}
 
-        {/* Desktop: explicit named-area grid */}
+        {/* Desktop (lg+) — 3-column masonry */}
         <div
-          className="hidden lg:grid gap-4"
-          style={{
-            gridTemplateColumns: '1.15fr 1fr 1fr',
-            gridTemplateRows: '300px 300px',
-            gridTemplateAreas: `
-              "featured top-mid   top-right"
-              "featured bot-mid   bot-right"
-            `,
-          }}
+          className="hidden lg:block"
+          style={{ columns: 3, columnGap: '16px' }}
         >
           {displayImages.map((img, i) => {
-            const areas = ['featured', 'top-mid', 'top-right', 'bot-mid', 'bot-right']
+            const { w, h } = DIMS[img.src] ?? { w: 4, h: 3 }
             return (
               <div
                 key={img.src}
-                className="group relative overflow-hidden cursor-pointer"
-                style={{ ...cardStyle, gridArea: areas[i] }}
+                className="group relative cursor-pointer"
+                style={cardStyle}
                 onClick={() => setSelected(i)}
                 onMouseEnter={e => hoverIn(e.currentTarget as HTMLElement)}
                 onMouseLeave={e => hoverOut(e.currentTarget as HTMLElement)}
@@ -103,9 +104,11 @@ export function GallerySection({ images }: GallerySectionProps) {
                 <Image
                   src={img.src}
                   alt={img.alt}
-                  fill
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                  sizes="(max-width: 1280px) 40vw, 500px"
+                  width={w}
+                  height={h}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  className="transition-transform duration-500 group-hover:scale-[1.04]"
+                  sizes="(max-width: 1280px) 33vw, 420px"
                 />
                 <Overlay img={img} />
               </div>
@@ -113,37 +116,65 @@ export function GallerySection({ images }: GallerySectionProps) {
           })}
         </div>
 
-        {/* Mobile: simple 2-column grid, uniform 240px rows */}
+        {/* Tablet (sm–lg) — 2-column masonry */}
         <div
-          className="grid lg:hidden gap-4"
-          style={{
-            gridTemplateColumns: '1fr 1fr',
-            gridAutoRows: '240px',
-          }}
+          className="hidden sm:block lg:hidden"
+          style={{ columns: 2, columnGap: '14px' }}
         >
-          {displayImages.map((img, i) => (
-            <div
-              key={img.src}
-              className="group relative overflow-hidden cursor-pointer"
-              style={{
-                ...cardStyle,
-                gridColumn: i === 0 ? 'span 2' : 'span 1',
-              }}
-              onClick={() => setSelected(i)}
-              onMouseEnter={e => hoverIn(e.currentTarget as HTMLElement)}
-              onMouseLeave={e => hoverOut(e.currentTarget as HTMLElement)}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <Overlay img={img} />
-            </div>
-          ))}
+          {displayImages.map((img, i) => {
+            const { w, h } = DIMS[img.src] ?? { w: 4, h: 3 }
+            return (
+              <div
+                key={img.src}
+                className="group relative cursor-pointer"
+                style={cardStyle}
+                onClick={() => setSelected(i)}
+                onMouseEnter={e => hoverIn(e.currentTarget as HTMLElement)}
+                onMouseLeave={e => hoverOut(e.currentTarget as HTMLElement)}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={w}
+                  height={h}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  className="transition-transform duration-500 group-hover:scale-[1.04]"
+                  sizes="50vw"
+                />
+                <Overlay img={img} />
+              </div>
+            )
+          })}
         </div>
+
+        {/* Mobile — single column stack */}
+        <div className="sm:hidden flex flex-col gap-4">
+          {displayImages.map((img, i) => {
+            const { w, h } = DIMS[img.src] ?? { w: 4, h: 3 }
+            return (
+              <div
+                key={img.src}
+                className="group relative cursor-pointer"
+                style={{ ...cardStyle, marginBottom: 0 }}
+                onClick={() => setSelected(i)}
+                onMouseEnter={e => hoverIn(e.currentTarget as HTMLElement)}
+                onMouseLeave={e => hoverOut(e.currentTarget as HTMLElement)}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={w}
+                  height={h}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  className="transition-transform duration-500 group-hover:scale-[1.04]"
+                  sizes="100vw"
+                />
+                <Overlay img={img} />
+              </div>
+            )
+          })}
+        </div>
+
       </div>
 
       {/* Lightbox */}
@@ -200,7 +231,6 @@ export function GallerySection({ images }: GallerySectionProps) {
 function Overlay({ img }: { img: { alt: string; category: string } }) {
   return (
     <>
-      {/* Dark gradient reveal on hover */}
       <div
         className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: 'linear-gradient(to top, rgba(26,26,26,0.72) 0%, transparent 55%)' }}
@@ -219,7 +249,6 @@ function Overlay({ img }: { img: { alt: string; category: string } }) {
         </span>
       </div>
 
-      {/* Expand icon */}
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div
           className="w-8 h-8 flex items-center justify-center rounded-full"
