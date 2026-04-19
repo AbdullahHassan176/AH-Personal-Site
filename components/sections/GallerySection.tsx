@@ -1,115 +1,234 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Images } from '@/lib/server-data'
 
 interface GallerySectionProps {
   images: Images
 }
 
+// Curated 5-image selection — excludes DSCF6400 (used as hero portrait),
+// image2.jpeg (peace-sign casual), and DSCF6453 (redundant casual).
+const CURATED_SRCS = [
+  '/images/DSCF6402.JPG',   // featured tall — sitting portrait, warm lounge
+  '/images/DSCF6428.JPG',   // team staircase
+  '/images/DSCF6446.JPG',   // group fun
+  '/images/image0.jpeg',    // formal suit
+  '/images/DSCF6453.JPG',   // casual portrait
+]
+
+const cardStyle = {
+  borderRadius: '18px',
+  border: '1px solid rgba(214,195,163,0.25)',
+  boxShadow: '0 4px 16px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.50)',
+  transition: 'transform 250ms cubic-bezier(0.4,0,0.2,1), box-shadow 250ms cubic-bezier(0.4,0,0.2,1), border-color 250ms',
+} as React.CSSProperties
+
+const hoverIn  = (el: HTMLElement) => {
+  el.style.transform   = 'translateY(-4px)'
+  el.style.boxShadow   = '0 12px 40px rgba(107,31,42,0.12), inset 0 1px 0 rgba(255,255,255,0.60)'
+  el.style.borderColor = 'rgba(198,161,91,0.50)'
+}
+const hoverOut = (el: HTMLElement) => {
+  el.style.transform   = ''
+  el.style.boxShadow   = cardStyle.boxShadow as string
+  el.style.borderColor = 'rgba(214,195,163,0.25)'
+}
+
 export function GallerySection({ images }: GallerySectionProps) {
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selected, setSelected] = useState<number | null>(null)
 
-  const categories = ['All', ...Array.from(new Set(images.gallery.map((img: any) => img.category)))]
-  const [activeCategory, setActiveCategory] = useState('All')
+  // Build ordered display list from the gallery data
+  const displayImages = CURATED_SRCS.map(src =>
+    images.gallery.find((img: any) => img.src === src)
+  ).filter(Boolean) as Array<{ src: string; alt: string; category: string }>
 
-  const filteredImages = activeCategory === 'All' 
-    ? images.gallery 
-    : images.gallery.filter((img: any) => img.category === activeCategory)
+  const closeModal = () => setSelected(null)
+  const prev = () => setSelected(i => (i !== null ? (i - 1 + displayImages.length) % displayImages.length : 0))
+  const next = () => setSelected(i => (i !== null ? (i + 1) % displayImages.length : 0))
 
   return (
-    <section className="py-20 bg-gray-800">
+    <section className="py-32 bg-[#FBF7F1]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-6 text-white">
-            Photo <span className="text-yellow-400">Gallery</span>
+
+        {/* Header */}
+        <div className="mb-16">
+          <p className="font-mono text-[#5F5A55] text-[11px] font-medium tracking-[0.35em] uppercase mb-4">
+            Gallery
+          </p>
+          <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-[#1A1A1A]">
+            Professional{' '}
+            <span className="gradient-text-brand">Moments</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Professional moments and team collaborations showcasing the journey of innovation and leadership
+          <p className="text-[#5F5A55] text-base mt-4 max-w-lg leading-relaxed">
+            Portrait sessions and team collaborations capturing the journey of innovation and leadership.
           </p>
         </div>
-        
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                activeCategory === category
-                  ? 'bg-yellow-400 text-gray-900'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+
+        {/*
+          Editorial 5-image grid — perfectly aligned, no masonry gaps.
+          Desktop layout (3 cols, 2 equal rows of 300px):
+
+          ┌──────────────────┬──────────────┬──────────────┐
+          │                  │   [1] team   │   [2] group  │
+          │  [0] portrait    ├──────────────┼──────────────┤
+          │     (tall)       │   [3] suit   │  [4] casual  │
+          └──────────────────┴──────────────┴──────────────┘
+        */}
+
+        {/* Desktop: explicit named-area grid */}
+        <div
+          className="hidden lg:grid gap-4"
+          style={{
+            gridTemplateColumns: '1.15fr 1fr 1fr',
+            gridTemplateRows: '300px 300px',
+            gridTemplateAreas: `
+              "featured top-mid   top-right"
+              "featured bot-mid   bot-right"
+            `,
+          }}
+        >
+          {displayImages.map((img, i) => {
+            const areas = ['featured', 'top-mid', 'top-right', 'bot-mid', 'bot-right']
+            return (
+              <div
+                key={img.src}
+                className="group relative overflow-hidden cursor-pointer"
+                style={{ ...cardStyle, gridArea: areas[i] }}
+                onClick={() => setSelected(i)}
+                onMouseEnter={e => hoverIn(e.currentTarget as HTMLElement)}
+                onMouseLeave={e => hoverOut(e.currentTarget as HTMLElement)}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  sizes="(max-width: 1280px) 40vw, 500px"
+                />
+                <Overlay img={img} />
+              </div>
+            )
+          })}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredImages.map((image: any, index: number) => (
-            <div 
-              key={index}
-              className="group cursor-pointer"
-              onClick={() => {
-                setSelectedImage(index)
-                setIsModalOpen(true)
+        {/* Mobile: simple 2-column grid, uniform 240px rows */}
+        <div
+          className="grid lg:hidden gap-4"
+          style={{
+            gridTemplateColumns: '1fr 1fr',
+            gridAutoRows: '240px',
+          }}
+        >
+          {displayImages.map((img, i) => (
+            <div
+              key={img.src}
+              className="group relative overflow-hidden cursor-pointer"
+              style={{
+                ...cardStyle,
+                gridColumn: i === 0 ? 'span 2' : 'span 1',
               }}
+              onClick={() => setSelected(i)}
+              onMouseEnter={e => hoverIn(e.currentTarget as HTMLElement)}
+              onMouseLeave={e => hoverOut(e.currentTarget as HTMLElement)}
             >
-              <div className="relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-700 hover-glow transition-all duration-300">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <svg className="w-8 h-8 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-sm font-medium">View Full Size</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4">
-                <h3 className="text-white font-semibold mb-2">{image.alt}</h3>
-                <span className="inline-block bg-yellow-400/20 text-yellow-400 px-3 py-1 rounded-full text-sm border border-yellow-400/30">
-                  {image.category}
-                </span>
-              </div>
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <Overlay img={img} />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-[90vh]">
+      {/* Lightbox */}
+      {selected !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-6"
+          style={{ background: 'rgba(18,18,18,0.95)' }}
+          onClick={closeModal}
+        >
+          <div
+            className="relative flex items-center justify-center w-full max-w-4xl"
+            onClick={e => e.stopPropagation()}
+          >
             <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-white hover:text-yellow-400 transition-colors z-10"
+              onClick={closeModal}
+              aria-label="Close"
+              className="absolute -top-10 right-0 text-[#B8AEA1] hover:text-[#C6A15B] transition-colors"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+
+            <button onClick={prev} aria-label="Previous" className="absolute -left-12 text-[#B8AEA1] hover:text-[#C6A15B] transition-colors hidden sm:block">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
             <img
-              src={filteredImages[selectedImage]?.src}
-              alt={filteredImages[selectedImage]?.alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              src={displayImages[selected]?.src}
+              alt={displayImages[selected]?.alt}
+              className="max-w-full max-h-[82vh] object-contain"
+              style={{ borderRadius: '18px' }}
             />
-            <div className="absolute bottom-4 left-4 text-white">
-              <h3 className="text-xl font-semibold mb-2">{filteredImages[selectedImage]?.alt}</h3>
-              <span className="inline-block bg-yellow-400/20 text-yellow-400 px-3 py-1 rounded-full text-sm border border-yellow-400/30">
-                {filteredImages[selectedImage]?.category}
-              </span>
-            </div>
+
+            <button onClick={next} aria-label="Next" className="absolute -right-12 text-[#B8AEA1] hover:text-[#C6A15B] transition-colors hidden sm:block">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <p className="absolute -bottom-8 left-0 right-0 text-center text-[#B8AEA1] text-xs font-mono">
+              {selected + 1} / {displayImages.length} — {displayImages[selected]?.alt}
+            </p>
           </div>
         </div>
       )}
     </section>
+  )
+}
+
+function Overlay({ img }: { img: { alt: string; category: string } }) {
+  return (
+    <>
+      {/* Dark gradient reveal on hover */}
+      <div
+        className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: 'linear-gradient(to top, rgba(26,26,26,0.72) 0%, transparent 55%)' }}
+      >
+        <p className="text-[#F5EFE6] text-sm font-semibold leading-snug mb-2 truncate">{img.alt}</p>
+        <span
+          className="self-start text-[10px] font-mono px-2.5 py-1"
+          style={{
+            background: 'rgba(198,161,91,0.18)',
+            border: '1px solid rgba(198,161,91,0.40)',
+            color: '#E5D199',
+            borderRadius: '9999px',
+          }}
+        >
+          {img.category}
+        </span>
+      </div>
+
+      {/* Expand icon */}
+      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div
+          className="w-8 h-8 flex items-center justify-center rounded-full"
+          style={{ background: 'rgba(251,247,241,0.90)', backdropFilter: 'blur(8px)' }}
+        >
+          <svg className="w-3.5 h-3.5 text-[#6B1F2A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+          </svg>
+        </div>
+      </div>
+    </>
   )
 }

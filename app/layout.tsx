@@ -45,7 +45,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" href="/images/DSCF6400.JPG" as="image" />
       </head>
-      <body className="bg-gray-900 text-white font-inter">
+      <body className="font-inter antialiased">
         <PerformanceOptimization />
         <Navigation />
         <main>{children}</main>

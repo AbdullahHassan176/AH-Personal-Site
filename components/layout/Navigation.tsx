@@ -5,39 +5,29 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
+  { href: '/',         label: 'Home' },
+  { href: '/about',    label: 'About' },
   { href: '/projects', label: 'Projects' },
   { href: '/ventures', label: 'Ventures' },
-  { href: '/skills', label: 'Skills' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/skills',   label: 'Skills' },
+  { href: '/blog',     label: 'Blog' },
 ]
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled]   = useState(false)
+  const [isMenuOpen, setIsMenuOpen]   = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setIsScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMenuOpen(false)
-  }, [pathname])
+  useEffect(() => { setIsMenuOpen(false) }, [pathname])
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isMenuOpen])
 
@@ -45,78 +35,89 @@ export function Navigation() {
     <nav
       id="header"
       className={cn(
-        "fixed top-0 w-full backdrop-blur-md border-b border-white/[0.07] z-50 transition-all duration-300",
-        isScrolled ? "bg-gray-950/95" : "bg-gray-950/80"
+        'fixed top-0 w-full z-50 transition-all duration-300',
+        isScrolled
+          ? 'bg-[#FBF7F1]/98 shadow-[0_2px_24px_rgba(107,31,42,0.08)]'
+          : 'bg-[#FBF7F1]/90',
+        'backdrop-blur-xl border-b border-[#D6C3A3]/20'
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <a href="/" className="text-2xl font-playfair font-bold text-yellow-400">
-            AH
-          </a>
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className={cn(
-                  "font-medium transition-colors",
-                  pathname === href
-                    ? "text-yellow-400 border-b border-yellow-400 pb-0.5"
-                    : "text-gray-300 hover:text-yellow-400"
-                )}
-              >
-                {label}
-              </a>
-            ))}
+        {/* Logo */}
+        <a
+          href="/"
+          className="text-2xl font-playfair font-bold tracking-tight select-none"
+          style={{
+            background: 'linear-gradient(135deg, #6B1F2A 0%, #1F6F54 50%, #C6A15B 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
+          AH
+        </a>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map(({ href, label }) => (
             <a
-              href="/contact"
+              key={href}
+              href={href}
               className={cn(
-                "border px-6 py-2 text-sm font-medium transition-all duration-200",
-                pathname === '/contact'
-                  ? "bg-yellow-400 text-gray-900 border-yellow-400"
-                  : "border-yellow-400/60 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 hover:border-yellow-400"
+                'text-sm font-medium transition-colors duration-200',
+                pathname === href
+                  ? 'text-[#6B1F2A] border-b border-[#6B1F2A] pb-0.5'
+                  : 'text-[#5F5A55] hover:text-[#6B1F2A]'
               )}
             >
-              Contact
+              {label}
             </a>
-          </div>
+          ))}
 
-          {/* Hamburger / Close button */}
-          <button
-            className="md:hidden text-gray-300 hover:text-yellow-400 transition-colors p-1"
-            onClick={() => setIsMenuOpen(prev => !prev)}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+          <a
+            href="/contact"
+            className={cn(
+              'btn-burgundy px-6 py-2.5 text-sm font-semibold rounded-[var(--radius-md)] tracking-wide',
+              pathname === '/contact' && 'opacity-90'
             )}
-          </button>
+          >
+            Contact
+          </a>
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden text-[#5F5A55] hover:text-[#6B1F2A] transition-colors p-1"
+          onClick={() => setIsMenuOpen(prev => !prev)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-900 border-t border-gray-800">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col space-y-1">
+        <div className="md:hidden bg-[#FBF7F1] border-t border-[#D6C3A3]/30">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
             {navLinks.map(({ href, label }) => (
               <a
                 key={href}
                 href={href}
                 className={cn(
-                  "py-3 px-4 rounded-lg font-medium transition-colors",
+                  'py-3 px-4 rounded-[var(--radius-md)] text-sm font-medium transition-colors',
                   pathname === href
-                    ? "text-yellow-400 bg-yellow-400/10"
-                    : "text-gray-300 hover:text-yellow-400 hover:bg-gray-800"
+                    ? 'text-[#6B1F2A] bg-[rgba(107,31,42,0.06)]'
+                    : 'text-[#5F5A55] hover:text-[#6B1F2A] hover:bg-[rgba(107,31,42,0.04)]'
                 )}
               >
                 {label}
@@ -124,12 +125,7 @@ export function Navigation() {
             ))}
             <a
               href="/contact"
-              className={cn(
-                "py-3 px-4 rounded-lg font-medium transition-colors mt-2",
-                pathname === '/contact'
-                  ? "bg-yellow-400 text-gray-900"
-                  : "bg-yellow-400/10 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 border border-yellow-400/30"
-              )}
+              className="btn-burgundy mt-2 py-3 px-4 rounded-[var(--radius-md)] text-sm font-semibold text-center"
             >
               Contact
             </a>
