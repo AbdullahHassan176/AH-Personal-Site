@@ -45,8 +45,8 @@ export function Navigation() {
     <nav
       id="header"
       className={cn(
-        "fixed top-0 w-full backdrop-blur-sm border-b border-gray-800 z-50 transition-all duration-300",
-        isScrolled ? "bg-gray-900" : "bg-gray-900/95"
+        "fixed top-0 w-full backdrop-blur-md border-b border-white/[0.07] z-50 transition-all duration-300",
+        isScrolled ? "bg-gray-950/95" : "bg-gray-950/80"
       )}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -74,10 +74,10 @@ export function Navigation() {
             <a
               href="/contact"
               className={cn(
-                "border px-6 py-2 rounded-full transition-all hover-glow",
+                "border px-6 py-2 text-sm font-medium transition-all duration-200",
                 pathname === '/contact'
                   ? "bg-yellow-400 text-gray-900 border-yellow-400"
-                  : "border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900"
+                  : "border-yellow-400/60 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 hover:border-yellow-400"
               )}
             >
               Contact

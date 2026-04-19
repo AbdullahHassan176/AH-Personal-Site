@@ -26,34 +26,36 @@ const doubled = [...techItems, ...techItems]
 
 export function LogosSection() {
   return (
-    <section className="py-16 bg-gray-900 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
-        <h2 className="text-3xl font-playfair font-bold mb-3 text-white">
+    <section className="py-20 bg-gray-950 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-10">
+        <p className="text-gray-600 text-[11px] font-medium tracking-[0.35em] uppercase mb-3">
+          Tech Stack &amp; Affiliations
+        </p>
+        <h2 className="text-3xl font-playfair font-bold text-white">
           Technologies &amp; <span className="text-yellow-400">Organisations</span>
         </h2>
-        <p className="text-gray-400">The tools, frameworks, and institutions I work with</p>
       </div>
 
       {/* Scrolling ticker */}
       <div className="relative">
-        {/* Fade-out edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none" />
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-950 to-transparent z-10 pointer-events-none" />
 
         <div
-          className="flex gap-4 animate-marquee w-max hover:[animation-play-state:paused]"
+          className="flex gap-3 animate-marquee w-max hover:[animation-play-state:paused]"
           style={{ willChange: 'transform' }}
         >
           {doubled.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 px-5 py-3 bg-gray-800 border border-gray-700 rounded-full whitespace-nowrap select-none hover:border-yellow-400/50 transition-colors duration-200"
+              className="flex items-center gap-2.5 px-5 py-2.5 bg-white/[0.04] border border-white/[0.08] whitespace-nowrap select-none hover:border-yellow-400/30 hover:bg-white/[0.06] transition-all duration-200"
             >
               <span
-                className="w-2 h-2 rounded-full flex-shrink-0"
+                className="w-1.5 h-1.5 rounded-full flex-shrink-0 opacity-80"
                 style={{ backgroundColor: item.dot }}
               />
-              <span className="text-gray-300 text-sm font-medium">{item.name}</span>
+              <span className="text-gray-400 text-[13px] font-medium tracking-wide">{item.name}</span>
             </div>
           ))}
         </div>

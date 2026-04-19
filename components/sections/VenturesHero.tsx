@@ -24,20 +24,20 @@ export function VenturesHero() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">5</div>
+              <div className="text-3xl font-bold text-yellow-400 mb-2">3</div>
               <div className="text-gray-400">Active Ventures</div>
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="text-3xl font-bold text-teal-400 mb-2">$2M+</div>
-              <div className="text-gray-400">Total Funding</div>
+              <div className="text-3xl font-bold text-teal-400 mb-2">3+</div>
+              <div className="text-gray-400">Years at Deloitte</div>
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="text-3xl font-bold text-purple-400 mb-2">15+</div>
-              <div className="text-gray-400">Countries</div>
+              <div className="text-3xl font-bold text-purple-400 mb-2">2</div>
+              <div className="text-gray-400">Countries Operating</div>
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-              <div className="text-3xl font-bold text-green-400 mb-2">50+</div>
-              <div className="text-gray-400">Team Members</div>
+              <div className="text-3xl font-bold text-green-400 mb-2">2024</div>
+              <div className="text-gray-400">UAE Expansion</div>
             </div>
           </div>
         </div>
