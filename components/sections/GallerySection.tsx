@@ -173,9 +173,10 @@ export function GallerySection({ images }: GallerySectionProps) {
               </svg>
             </button>
 
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={displayImages[selected]?.src}
-              alt={displayImages[selected]?.alt}
+              alt={displayImages[selected]?.alt ?? ''}
               className="max-w-full max-h-[82vh] object-contain"
               style={{ borderRadius: '18px' }}
             />
