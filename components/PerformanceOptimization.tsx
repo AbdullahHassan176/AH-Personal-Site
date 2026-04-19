@@ -4,61 +4,10 @@ import { useEffect } from 'react'
 
 export function PerformanceOptimization() {
   useEffect(() => {
-    // Preload critical resources
-    const preloadCriticalResources = () => {
-      const criticalImages = [
-        '/images/DSCF6400.JPG',
-        '/favicon.ico',
-        '/favicon.svg',
-      ]
-
-      criticalImages.forEach((src) => {
-        const link = document.createElement('link')
-        link.rel = 'preload'
-        link.as = 'image'
-        link.href = src
-        document.head.appendChild(link)
-      })
-    }
-
-    // Lazy load images
-    const lazyLoadImages = () => {
-      const images = document.querySelectorAll('img[data-src]')
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target as HTMLImageElement
-            img.src = img.dataset.src || ''
-            img.classList.remove('lazy')
-            imageObserver.unobserve(img)
-          }
-        })
-      })
-
-      images.forEach((img) => imageObserver.observe(img))
-    }
-
-    // Optimize font loading
-    const optimizeFonts = () => {
-      if ('fonts' in document) {
-        Promise.all([
-          document.fonts.load('400 16px Inter'),
-          document.fonts.load('400 16px Playfair Display'),
-        ]).then(() => {
-          document.documentElement.classList.add('fonts-loaded')
-        })
-      }
-    }
-
-    // Initialize optimizations
-    preloadCriticalResources()
-    lazyLoadImages()
-    optimizeFonts()
-
-    // Service Worker registration for caching
+    // Register service worker for offline caching
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(() => {
-        // Service worker registration failed, but that's okay
+        // SW registration is a progressive enhancement — failure is fine
       })
     }
   }, [])
@@ -66,68 +15,26 @@ export function PerformanceOptimization() {
   return null
 }
 
-// Image optimization component
-interface OptimizedImageProps {
-  src: string
-  alt: string
-  width?: number
-  height?: number
-  className?: string
-  priority?: boolean
-  lazy?: boolean
-}
-
-export function OptimizedImage({
-  src,
-  alt,
-  width,
-  height,
-  className = '',
-  priority = false,
-  lazy = true,
-}: OptimizedImageProps) {
-  const imageProps = {
-    src: priority ? src : undefined,
-    'data-src': lazy && !priority ? src : undefined,
-    alt,
-    width,
-    height,
-    className: `${className} ${lazy && !priority ? 'lazy opacity-0 transition-opacity duration-300' : ''}`,
-    loading: priority ? 'eager' as const : 'lazy' as const,
-    decoding: 'async' as const,
-  }
-
-  return <img {...imageProps} />
-}
-
-// Critical CSS inlining component
+// Critical CSS — inlined in <head> before any external stylesheet loads.
+// Prevents flash of wrong background/text color during initial paint.
 export function CriticalCSS() {
-  const criticalCSS = `
-    /* Critical above-the-fold styles */
-    body { 
-      font-family: Inter, system-ui, sans-serif; 
-      background-color: #1f2937; 
-      color: #ffffff; 
-    }
-    .hero-section { 
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-    }
-    .loading { 
-      opacity: 0; 
-      transition: opacity 0.3s ease; 
-    }
-    .loaded { 
-      opacity: 1; 
-    }
-  `
-
   return (
     <style
       dangerouslySetInnerHTML={{
-        __html: criticalCSS,
+        __html: `
+          *,*::before,*::after{box-sizing:border-box}
+          html{scroll-behavior:smooth}
+          body{
+            margin:0;
+            background-color:#FBF7F1;
+            color:#1A1A1A;
+            font-family:Inter,system-ui,-apple-system,sans-serif;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+          }
+          #hero{min-height:100vh;background-color:#FBF7F1}
+          nav{position:fixed;top:0;width:100%;z-index:50;background-color:rgba(251,247,241,0.90)}
+        `,
       }}
     />
   )

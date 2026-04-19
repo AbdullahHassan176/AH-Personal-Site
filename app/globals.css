@@ -237,6 +237,7 @@
       0 0 0 1px rgba(198, 161, 91, 0.10) inset;
     position: relative;
     overflow: hidden;
+    transform: translateZ(0);
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   }
 
@@ -281,6 +282,9 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.50);
     position: relative;
     overflow: hidden;
+    /* GPU compositing: promote to own layer so hover transforms
+       don't trigger layout/paint on surrounding content */
+    transform: translateZ(0);
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   }
 
@@ -297,12 +301,15 @@
       rgba(198, 161, 91, 0.06) 50%,
       transparent 60%
     );
+    /* will-change tells the browser to pre-promote this element to its own
+       GPU layer, preventing repaints on parent content during animation */
+    will-change: transform;
     animation: hologram-scan 6s linear infinite;
     pointer-events: none;
   }
 
   .holographic-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) translateZ(0);
     border-color: rgba(107, 31, 42, 0.55);
     box-shadow:
       0 8px 40px rgba(107, 31, 42, 0.12),
@@ -415,6 +422,7 @@
   /* ── Marquee ─────────────────────────────────────────────── */
   .animate-marquee {
     animation: marquee 30s linear infinite;
+    will-change: transform;
   }
 
   /* ── Gold shimmer button ─────────────────────────────────── */

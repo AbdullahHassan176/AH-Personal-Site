@@ -7,14 +7,23 @@ import { Analytics } from '@/components/Analytics'
 import { generateMetadata as generateSEOMetadata, generateStructuredData } from '@/lib/seo'
 import { PerformanceOptimization, CriticalCSS } from '@/components/PerformanceOptimization'
 
-const inter = Inter({ 
+// next/font self-hosts fonts at build time — no runtime request to Google.
+// display:'swap' lets text render immediately in a fallback font while the
+// custom font loads, eliminating layout shift.
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
+  preload: true,
 })
 
-const playfair = Playfair_Display({ 
+const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
+  display: 'swap',
+  // Only load the two weights actually used (bold headings + hero h1).
+  weight: ['700', '900'],
+  preload: false, // Secondary font — don't block initial render
 })
 
 export const metadata: Metadata = generateSEOMetadata()
@@ -29,21 +38,23 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
+        {/* Inline critical CSS before any external stylesheet — prevents flash */}
         <CriticalCSS />
+
+        {/* Structured data */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+
+        {/* Canonical & verification */}
         <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL || 'https://abdullahhassan.azurestaticapps.net'} />
         <meta name="google-site-verification" content={process.env.GOOGLE_SITE_VERIFICATION || ''} />
         <meta name="msvalidate.01" content={process.env.BING_VERIFICATION || ''} />
-        <meta name="yandex-verification" content={process.env.YANDEX_VERIFICATION || ''} />
-        <meta name="yahoo-site-verification" content={process.env.YAHOO_VERIFICATION || ''} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" href="/images/DSCF6400.JPG" as="image" />
+
+        {/* Hero portrait — preload the LCP image so it starts fetching
+            immediately, before the JS bundle is even parsed. */}
+        <link rel="preload" href="/images/DSCF6400.JPG" as="image" fetchPriority="high" />
       </head>
       <body className="font-inter antialiased">
         <PerformanceOptimization />
