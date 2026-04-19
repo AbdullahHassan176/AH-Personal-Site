@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-
 interface SkillsHeaderProps {
   onToggleSkills: (isTechnical: boolean) => void
   onToggleView: (viewMode: string) => void
@@ -11,54 +9,70 @@ interface SkillsHeaderProps {
 
 export function SkillsHeader({ onToggleSkills, onToggleView, isTechnical, viewMode }: SkillsHeaderProps) {
   return (
-    <section id="dashboard-header" className="pt-24 pb-12 bg-gray-900">
+    <section className="pt-28 pb-12 bg-[#FBF7F1]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-6 text-white">
-            Skills <span className="text-yellow-400 glow-text">Dashboard</span>
+          <p className="font-mono text-[#5F5A55] text-[11px] font-medium tracking-[0.35em] uppercase mb-4">
+            Capabilities
+          </p>
+          <h1 className="text-5xl lg:text-6xl font-playfair font-bold mb-5 text-[#1A1A1A]">
+            Skills <span className="gradient-text-brand">Dashboard</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Interactive visualization of technical expertise and soft skills across AI, finance, leadership, and innovation domains
+          <p className="text-[#5F5A55] text-lg max-w-2xl mx-auto leading-relaxed">
+            Interactive visualisation of technical expertise and soft skills across AI, finance, leadership, and innovation
           </p>
         </div>
-        
-        {/* Toggle Controls */}
-        <div className="flex justify-center items-center space-x-8 mb-8">
-          <div className="flex items-center space-x-4">
-            <span className={`font-medium transition-colors ${isTechnical ? 'text-yellow-400' : 'text-gray-300'}`}>
-              Technical Skills
-            </span>
-            <label className="toggle-switch">
-              <input 
-                type="checkbox" 
-                checked={!isTechnical}
-                onChange={() => onToggleSkills(!isTechnical)}
-              />
-              <span className="toggle-slider"></span>
-            </label>
-            <span className={`font-medium transition-colors ${!isTechnical ? 'text-yellow-400' : 'text-gray-300'}`}>
-              Soft Skills
-            </span>
+
+        {/* Controls */}
+        <div className="flex flex-wrap justify-center items-center gap-8">
+          {/* Technical / Soft toggle */}
+          <div
+            className="flex rounded-full p-1 gap-1"
+            style={{ background: 'rgba(245,239,230,0.80)', border: '1px solid rgba(198,161,91,0.20)' }}
+          >
+            {['Technical Skills', 'Soft Skills'].map((label, i) => {
+              const active = i === 0 ? isTechnical : !isTechnical
+              return (
+                <button
+                  key={label}
+                  onClick={() => onToggleSkills(i === 0)}
+                  className="px-5 py-2 rounded-full text-sm font-medium transition-all"
+                  style={
+                    active
+                      ? { background: '#6B1F2A', color: '#FBF7F1' }
+                      : { color: '#5F5A55' }
+                  }
+                >
+                  {label}
+                </button>
+              )
+            })}
           </div>
-          
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => onToggleView(viewMode === 'radial' ? 'bar' : 'radial')}
-              className="bg-yellow-400 text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-yellow-500 transition-colors"
-            >
-              <svg className="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                {viewMode === 'radial' ? (
+
+          {/* View mode toggle */}
+          <button
+            onClick={() => onToggleView(viewMode === 'radial' ? 'bar' : 'radial')}
+            className="btn-burgundy inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold"
+          >
+            {viewMode === 'radial' ? (
+              <>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                ) : (
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                )}
-              </svg>
-              {viewMode === 'radial' ? 'Bar View' : 'Radial View'}
-            </button>
-          </div>
+                </svg>
+                Bar View
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" strokeWidth={2} />
+                  <path strokeLinecap="round" strokeWidth={2} d="M12 3v9l5 5" />
+                </svg>
+                Radial View
+              </>
+            )}
+          </button>
         </div>
       </div>
     </section>
   )
 }
-

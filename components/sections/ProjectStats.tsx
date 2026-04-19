@@ -1,27 +1,23 @@
 export function ProjectStats() {
+  const stats = [
+    { value: '25+', label: 'Total Projects',   color: '#6B1F2A' },
+    { value: '12',  label: 'Research Papers',  color: '#C6A15B' },
+    { value: '8',   label: 'AI Solutions',     color: '#1F6F54' },
+    { value: '5',   label: 'Active Ventures',  color: '#6B1F2A' },
+  ]
+
   return (
-    <section id="stats" className="py-16 bg-gray-900">
+    <section className="py-16 bg-[#FBF7F1]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-yellow-400 mb-2">25+</div>
-            <div className="text-gray-400">Total Projects</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-teal-400 mb-2">12</div>
-            <div className="text-gray-400">Research Papers</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-purple-400 mb-2">8</div>
-            <div className="text-gray-400">AI Solutions</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-400 mb-2">5</div>
-            <div className="text-gray-400">Active Ventures</div>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s, i) => (
+            <div key={i} className="text-center">
+              <div className="text-4xl font-bold mb-1" style={{ color: s.color }}>{s.value}</div>
+              <div className="text-[#5F5A55] text-sm">{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   )
 }
-

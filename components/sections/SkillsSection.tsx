@@ -7,81 +7,79 @@ interface SkillsSectionProps {
   skills: Skills
 }
 
+const CATEGORIES = [
+  { key: 'languages',    label: 'Languages' },
+  { key: 'frameworks',   label: 'Frameworks' },
+  { key: 'data_ml',      label: 'Data & ML' },
+  { key: 'cloud_devops', label: 'Cloud & DevOps' },
+  { key: 'business',     label: 'Business' },
+]
+
+// Deterministic proficiency derived from string length — avoids hydration
+// mismatch from Math.random() and gives stable, plausible-looking values.
+function proficiency(name: string): number {
+  const base = name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+  return 65 + (base % 30)
+}
+
 export function SkillsSection({ skills }: SkillsSectionProps) {
-  const [activeCategory, setActiveCategory] = useState('languages')
-
-  const categories = [
-    { key: 'languages', label: 'Languages', color: 'yellow' },
-    { key: 'frameworks', label: 'Frameworks', color: 'teal' },
-    { key: 'data_ml', label: 'Data & ML', color: 'purple' },
-    { key: 'cloud_devops', label: 'Cloud & DevOps', color: 'green' },
-    { key: 'business', label: 'Business', color: 'blue' }
-  ]
-
-  const getColorClasses = (color: string) => {
-    const colors = {
-      yellow: 'border-yellow-400 bg-yellow-400/10 text-yellow-400',
-      teal: 'border-teal-400 bg-teal-400/10 text-teal-400',
-      purple: 'border-purple-400 bg-purple-400/10 text-purple-400',
-      green: 'border-green-400 bg-green-400/10 text-green-400',
-      blue: 'border-blue-400 bg-blue-400/10 text-blue-400'
-    }
-    return colors[color as keyof typeof colors] || colors.yellow
-  }
+  const [activeKey, setActiveKey] = useState('languages')
 
   return (
-    <section className="py-20 bg-gray-900">
+    <section className="py-20 bg-[#FBF7F1]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-playfair font-bold mb-6 text-white">
-            Skills & <span className="text-yellow-400">Expertise</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Comprehensive technical and business skills across multiple domains
+        <div className="text-center mb-14">
+          <p className="font-mono text-[#5F5A55] text-[11px] font-medium tracking-[0.35em] uppercase mb-4">
+            Expertise
           </p>
+          <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-[#1A1A1A]">
+            Skills &amp;{' '}
+            <span className="gradient-text-brand">Expertise</span>
+          </h2>
         </div>
-        
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+
+        {/* Category tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {CATEGORIES.map(cat => (
             <button
-              key={category.key}
-              onClick={() => setActiveCategory(category.key)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                activeCategory === category.key
-                  ? `bg-${category.color}-400 text-gray-900`
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-              }`}
+              key={cat.key}
+              onClick={() => setActiveKey(cat.key)}
+              className="px-5 py-2.5 rounded-full font-medium text-sm transition-all"
+              style={
+                activeKey === cat.key
+                  ? { background: '#6B1F2A', color: '#FBF7F1' }
+                  : { background: 'rgba(245,239,230,0.80)', border: '1px solid rgba(198,161,91,0.20)', color: '#5F5A55' }
+              }
             >
-              {category.label}
+              {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills[activeCategory as keyof Skills].map((skill, index) => (
-            <div key={index} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover-glow">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-white">{skill}</h3>
-                <div className={`w-3 h-3 bg-${categories.find(c => c.key === activeCategory)?.color}-400 rounded-full`}></div>
-              </div>
-              <div className="flex items-center">
-                <div className="flex-1 bg-gray-700 rounded-full h-2">
-                  <div 
-                    className={`bg-${categories.find(c => c.key === activeCategory)?.color}-400 h-2 rounded-full transition-all duration-1000`}
-                    style={{width: `${Math.random() * 40 + 60}%`}}
-                  ></div>
+        {/* Skills grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {(skills[activeKey as keyof Skills] ?? []).map((skill, i) => {
+            const pct = proficiency(skill)
+            return (
+              <div key={i} className="holographic-card p-5">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-[#1A1A1A] font-semibold">{skill}</h3>
+                  <span className="text-[#C6A15B] text-sm font-medium">{pct}%</span>
                 </div>
-                <span className="ml-3 text-gray-400 text-sm">
-                  {Math.floor(Math.random() * 40 + 60)}%
-                </span>
+                <div className="w-full h-1.5 rounded-full" style={{ background: '#EDE6DA' }}>
+                  <div
+                    className="h-1.5 rounded-full"
+                    style={{
+                      width: `${pct}%`,
+                      background: 'linear-gradient(90deg, #6B1F2A, #C6A15B, #1F6F54)',
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
   )
 }
-

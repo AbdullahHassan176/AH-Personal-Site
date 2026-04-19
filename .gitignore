@@ -91,3 +91,13 @@ jspm_packages/
 # TernJS port file
 .tern-port
 
+# Personal files / design assets — not part of the web build
+"About AH"/
+About AH/
+tsconfig.tsbuildinfo
+UI_UX_DESIGN_SYSTEM.md
+Screenshot_*.jpg
+Screenshot_*.png
+*.HEIC
+*.heif
+

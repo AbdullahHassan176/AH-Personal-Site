@@ -3,56 +3,35 @@
 import { useState } from 'react'
 
 const filters = [
-  { id: 'all', label: 'All Projects', icon: 'layer-group' },
-  { id: 'ai', label: 'AI & Machine Learning', icon: 'brain' },
-  { id: 'finance', label: 'Finance & Trading', icon: 'chart-line' },
-  { id: 'logistics', label: 'Logistics & Supply Chain', icon: 'truck' },
-  { id: 'tokenization', label: 'Tokenization & Blockchain', icon: 'coins' },
-  { id: 'research', label: 'Academic Research', icon: 'graduation-cap' }
+  { id: 'all',           label: 'All Projects' },
+  { id: 'ai',           label: 'AI & Machine Learning' },
+  { id: 'finance',      label: 'Finance & Trading' },
+  { id: 'logistics',    label: 'Logistics & Supply Chain' },
+  { id: 'tokenization', label: 'Tokenization & Blockchain' },
+  { id: 'research',     label: 'Academic Research' },
 ]
 
 export function PortfolioFilters() {
   const [activeFilter, setActiveFilter] = useState('all')
 
-  const handleFilterChange = (filterId: string) => {
-    setActiveFilter(filterId)
-    // Trigger project filtering logic here
-  }
-
   return (
-    <section id="filters" className="py-8 bg-gray-800 sticky top-20 z-40">
+    <section
+      className="py-5 sticky top-[72px] z-40"
+      style={{ background: 'rgba(239,230,218,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(198,161,91,0.15)' }}
+    >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-wrap justify-center gap-4">
-          {filters.map((filter) => (
+        <div className="flex flex-wrap justify-center gap-2">
+          {filters.map(filter => (
             <button
               key={filter.id}
-              onClick={() => handleFilterChange(filter.id)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              onClick={() => setActiveFilter(filter.id)}
+              className="px-4 py-2 rounded-full font-medium text-sm transition-all"
+              style={
                 activeFilter === filter.id
-                  ? 'filter-active'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-              }`}
+                  ? { background: '#6B1F2A', color: '#FBF7F1' }
+                  : { background: 'rgba(245,239,230,0.80)', border: '1px solid rgba(198,161,91,0.20)', color: '#5F5A55' }
+              }
             >
-              <svg className="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                {filter.icon === 'layer-group' && (
-                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                )}
-                {filter.icon === 'brain' && (
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                )}
-                {filter.icon === 'chart-line' && (
-                  <path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 13h2v4H7v-4zm4-6h2v10h-2V7zm4-4h2v14h-2V3z" />
-                )}
-                {filter.icon === 'truck' && (
-                  <path d="M1 3h15v13H1V3zm2 2v9h11V5H3zm13 0v9h2V5h-2z" />
-                )}
-                {filter.icon === 'coins' && (
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                )}
-                {filter.icon === 'graduation-cap' && (
-                  <path d="M12 2L1 7l11 5 11-5-11-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                )}
-              </svg>
               {filter.label}
             </button>
           ))}
@@ -61,4 +40,3 @@ export function PortfolioFilters() {
     </section>
   )
 }
-
