@@ -113,13 +113,20 @@ export function HeroSection({ profile, images }: HeroSectionProps) {
               </div>
               <div className="h-8 w-px bg-[#D6C3A3]/50" />
               <div>
-                <span className="block text-[1.7rem] font-bold text-[#1A1A1A] font-playfair leading-none">3</span>
+                <span className="block text-[1.7rem] font-bold text-[#1A1A1A] font-playfair leading-none">5</span>
                 <span className="block text-[10px] text-[#B8AEA1] mt-1.5 tracking-widest uppercase font-mono">Active Ventures</span>
               </div>
               <div className="h-8 w-px bg-[#D6C3A3]/50" />
               <div>
                 <span className="block text-[1.4rem] font-bold text-[#1A1A1A] font-playfair leading-none">ZA · UAE</span>
                 <span className="block text-[10px] text-[#B8AEA1] mt-1.5 tracking-widest uppercase font-mono">Operating In</span>
+              </div>
+              <div className="h-8 w-px bg-[#D6C3A3]/50" />
+              <div className="min-w-0 max-w-[9rem]">
+                <span className="block text-[0.82rem] sm:text-[0.92rem] font-bold text-[#1A1A1A] font-playfair leading-snug tracking-tight">
+                  DCF · NAV · Lending
+                </span>
+                <span className="block text-[10px] text-[#B8AEA1] mt-1.5 tracking-widest uppercase font-mono">Modelling Tracks</span>
               </div>
             </div>
           </div>

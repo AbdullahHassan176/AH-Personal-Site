@@ -1,3 +1,13 @@
+financial_modelling:
+  - DCF modelling (FCFF & FCFE)
+  - Asset valuation (DRC · comparables)
+  - ETF & fund NAV / iNAV
+  - Excel (advanced modelling)
+  - Financial projections & scenarios
+  - XVA analytics
+  - Credit risk & borrowing bases
+  - GARCH · NF-GARCH
+  - Risk modelling (VaR · CVaR)
 languages:
   - Python
   - R
@@ -10,15 +20,14 @@ frameworks:
   - TensorFlow
   - PyTorch
 data_ml:
-  - Time-series (GARCH/NF/GAN)
+  - Time-series (GARCH / NF / flows)
   - Synthetic data generation
   - ETL & feature engineering
 cloud_devops:
-  - Azure (SWA, Functions, Cosmos DB)
+  - Azure (SWA · Functions · Cosmos DB)
   - GitHub Actions
   - Docker
 business:
   - Tokenization (RWAs)
-  - Quant finance & risk
+  - Quant advisory & valuations
   - Go-to-market & partnerships
-

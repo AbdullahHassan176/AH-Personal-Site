@@ -23,8 +23,8 @@ export function ExperienceTimeline({ experience }: ExperienceTimelineProps) {
             Professional{' '}
             <span className="gradient-text-brand">Experience</span>
           </h2>
-          <p className="text-[#5F5A55] text-lg mt-4">
-            A journey through innovation, leadership, and technological advancement
+          <p className="text-[#5F5A55] text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+            Financial modelling, Deloitte capital-markets delivery, and venture building — with the receipts in Excel, code, and deployed products.
           </p>
         </div>
 

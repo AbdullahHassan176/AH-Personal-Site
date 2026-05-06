@@ -7,9 +7,10 @@ import { readJSON } from '@/lib/server-data'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'Abdullah Hassan - Quant-minded AI & Analytics Leader',
-  description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization. Founder of Global Next and Unamani AI.',
-  keywords: ['AI Leader', 'Quantitative Finance', 'Entrepreneur', 'Technology Innovation', 'Data Analytics'],
+  title: 'Abdullah Hassan — Quant AI Leader & Financial Modeller',
+  description:
+    'Dubai-based financial modeller (DCF · ETF NAV · lending · XVA) and AI founder — Deloitte digital assets experience, NF-GARCH research, Safe Labs, Global Next, Unamani AI.',
+  keywords: ['AI Consultant', 'Financial Modeller', 'DCF', 'ETF NAV', 'Deloitte', 'NF-GARCH', 'UAE', 'Founder'],
   type: 'website',
 })
 

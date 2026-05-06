@@ -1,9 +1,9 @@
 export function VenturesHero() {
   const stats = [
-    { value: '3',    label: 'Active Ventures',    color: '#6B1F2A' },
-    { value: '3+',   label: 'Years at Deloitte',  color: '#C6A15B' },
-    { value: '2',    label: 'Countries Operating', color: '#1F6F54' },
-    { value: '2024', label: 'UAE Expansion',       color: '#6B1F2A' },
+    { value: '5',    label: 'Active Ventures',     color: '#6B1F2A' },
+    { value: '3+',   label: 'Years at Deloitte',   color: '#C6A15B' },
+    { value: 'MENA', label: 'Client footprint',    color: '#1F6F54' },
+    { value: 'UTC+4', label: 'Dubai base',         color: '#6B1F2A' },
   ]
 
   return (
@@ -18,9 +18,9 @@ export function VenturesHero() {
         </h1>
 
         <p className="text-[#5F5A55] text-lg mb-14 max-w-3xl mx-auto leading-relaxed">
-          Building the future through innovative companies at the intersection of artificial intelligence,
-          finance, and global trade. Each venture represents a step forward in creating solutions that
-          transform industries and create positive global impact.
+          I keep five builder lines in flight — Global Next, Safe Labs, Unamani AI, Petigree / Hurayra Halal,
+          and the Global Marketplace trade portal. Each one sits on the same thesis: ship quant-grade rigour
+          where capital markets meet physical operations.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">

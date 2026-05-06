@@ -1,9 +1,9 @@
 export function ProjectsHero() {
   const stats = [
-    { value: '3',     label: 'Active Projects',   color: '#6B1F2A' },
-    { value: '$850K', label: 'Assets Tokenized',  color: '#C6A15B' },
-    { value: '15K+',  label: 'Transactions',      color: '#1F6F54' },
-    { value: '3',     label: 'Categories',        color: '#6B1F2A' },
+    { value: '3',       label: 'Build tracks',           color: '#6B1F2A' },
+    { value: '3',       label: 'Illustrative workbooks', color: '#C6A15B' },
+    { value: 'NF-GARCH',label: 'Research thread',        color: '#1F6F54' },
+    { value: 'MENA',    label: 'Regional focus',         color: '#6B1F2A' },
   ]
 
   return (
@@ -18,8 +18,8 @@ export function ProjectsHero() {
         </h1>
 
         <p className="text-[#5F5A55] text-lg mb-14 max-w-3xl mx-auto leading-relaxed">
-          Innovative solutions spanning AI research, tokenization platforms, and logistics optimisation.
-          Each project represents a step forward in creating technology that serves real-world needs.
+          Live venture engineering (Global Next, Marketplace, research) plus illustrative financial models you can request as PDFs —
+          every artifact is built to the same standard I use behind the firewall at Deloitte.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">

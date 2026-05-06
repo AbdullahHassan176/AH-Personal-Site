@@ -101,3 +101,7 @@ Screenshot_*.png
 *.HEIC
 *.heif
 
+
+
+#Ignore cursor AI rules
+.cursor\rules\codacy.mdc

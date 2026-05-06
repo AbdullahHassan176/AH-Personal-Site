@@ -1,26 +1,27 @@
 [
   {
-    "company": "Deloitte (South Africa)",
-    "title": "Quant / Financial Engineering (Consulting)",
+    "company": "Deloitte",
+    "title": "Assistant Manager — Digital Assets & AI Consulting",
     "start": "2022-01-01",
     "end": null,
-    "location": "Johannesburg, South Africa (remote-friendly)",
+    "location": "Dubai, UAE · MENA coverage · Remote-friendly with SA hub",
     "highlights": [
-      "Built/validated quantitative models across derivatives and risk; documented controls and created reproducible research pipelines.",
-      "Produced technical presentations (e.g., embedded derivatives within NPS agreements for electricity) tailored for quant audiences.",
-      "Collaborated cross-functionally to deliver analytics and client-facing insights with measurable business impact."
+      "Built XVA analytics (CVA, DVA, FVA), derivative pricing, credit risk, climate and digital asset valuation frameworks for banks, insurers, and fintechs across MENA.",
+      "Delivered lender-facing valuations and reproducible Excel/R/Python pipelines — Basel-aligned documentation, sensitivities, and controls-ready handover.",
+      "Partnered across risk, treasury, and issuers to ship dashboards and stress scenarios that landed with internal model validation stakeholders."
     ],
-    "tech": ["R", "Python", "rugarch", "TensorFlow", "PyTorch", "GitHub Actions", "Power BI"]
+    "tech": ["Excel (VBA & advanced)","R", "Python", "rugarch", "TensorFlow", "PyTorch", "GitHub Actions", "Power BI"]
   },
   {
-    "company": "Unamani Pty Ltd",
+    "company": "Unamani Pty Ltd (Unamani AI)",
     "title": "Founder / CEO (AI & Data Analytics)",
     "start": "2024-01-01",
     "end": null,
-    "location": "South Africa · Global",
+    "location": "South Africa · UAE · Global",
     "highlights": [
-      "Led development of AI-forward data products and consulting engagements.",
-      "Shipped dashboards, ETL pipelines, and ML prototypes for clients."
+      "Ship production-grade ML: NLP transformers, gradient boosting stacks, diffusion-style generative tooling, bespoke data products.",
+      "Architect Azure workloads (Static Web Apps, Functions, Cosmos DB) powering Global Next and marketplace portals.",
+      "Run client engagements spanning credit scoring, anomaly detection, and AI operating models."
     ],
     "tech": ["Azure", "Cosmos DB", "Azure Static Web Apps", "Functions", "Python", "Next.js"]
   },
@@ -29,12 +30,12 @@
     "title": "Founder / Operator (UAE mainland entity)",
     "start": "2024-01-01",
     "end": null,
-    "location": "UAE",
+    "location": "UAE · GCC",
     "highlights": [
-      "Built import/distribution operations; coordinated Montego shipments and MOCCAE compliance.",
-      "Negotiated A&P budgets, managed partners (Aleef, etc.), and developed a distribution app."
+      "Operate UAE mainland import & distribution lines for halal FMCG.",
+      "Coordinated shipments, distributor partnerships, MOCCAE compliance, and omnichannel rollout.",
+      "Built distribution tooling spanning Next.js storefronts through Power BI margin reporting."
     ],
     "tech": ["Next.js", "Vue", "Shopify", "Wix", "Azure", "Power BI"]
   }
 ]
-

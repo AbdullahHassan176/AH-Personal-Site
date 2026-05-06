@@ -26,6 +26,8 @@ export interface Profile {
   headline: string;
   location: string;
   summary: string;
+  availability?: string;
+  languages?: string[];
   currentFocus: string[];
   education: Array<{
     degree: string;
@@ -84,10 +86,18 @@ export interface Contact {
 }
 
 export interface Skills {
+  financial_modelling: string[];
   languages: string[];
   frameworks: string[];
   data_ml: string[];
   cloud_devops: string[];
   business: string[];
+}
+
+export interface WorkSample {
+  title: string;
+  label: string;
+  summary: string;
+  pdfUrl?: string;
 }
 

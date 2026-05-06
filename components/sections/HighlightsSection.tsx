@@ -5,34 +5,45 @@ const highlights = [
     num: '01',
     title: 'AI & Analytics Leader',
     description:
-      'Leading multi-disciplinary teams to build data products, investor/issuer portals, and Azure-first platforms that turn complex ideas into production systems.',
+      'Deliver production ML pipelines, investor-grade analytics portals, and Azure-native stacks that reconcile model risk scrutiny with UX expectations.',
     metrics: [
-      'NF-GARCH research on synthetic financial data',
-      'Azure-first ML pipelines and ETL systems',
-      'Quant consulting at Deloitte (2022–present)',
-    ],
+      'NF-GARCH research on synthetic finance paths',
+      'ETL spanning streaming risk signals and unstructured docs',
+      'Shipped investor + regulator-ready narratives bundled with code'
+    ]
   },
   {
     num: '02',
     title: 'Tokenization & Web3 Builder',
     description:
-      'Architecting tokenization ecosystems for logistics and real assets, with investor/issuer portals, oracle connectors, and compliance-ready data models.',
+      'Architect token rails for RWAs spanning logistics corridors, bridging spreadsheet truth with attestable oracle inputs and treasury-grade controls.',
     metrics: [
-      'Global Edge: UAE-first RWA tokenization platform',
-      'Chainlink oracle integration for on-chain data',
-      'Investor & issuer portal flows on Azure',
-    ],
+      'Global Next pilot — issuer & investor workspaces on Azure',
+      'Chainlinked attestations bridging ops KPIs to smart contracts',
+      'Compliance-aligned data lineage for AML & lender packs'
+    ]
   },
   {
     num: '03',
     title: 'Operator & Strategist',
     description:
-      'Building import/distribution operations, coordinating cross-border shipments, managing partnerships, and developing distribution platforms.',
+      'Run FMCG imports, continental trade portals, cross-border shipments, distributor economics, and the operating cadence tying product to spreadsheets.',
     metrics: [
-      'UAE mainland entity — Hurayra Halal pet food',
-      'MOCCAE compliance & distributor management',
-      'Global Marketplace: containerized trade portal',
-    ],
+      'UAE mainland FMCG importer — Hurayra Halal / Petigree',
+      'Containers + MOCCAE compliance',
+      'Global Marketplace — quoting to invoice pipelines'
+    ]
+  },
+  {
+    num: '04',
+    title: 'Financial Modelling & Valuation',
+    description:
+      'Build institutional spreadsheets and quant stacks — DCF, asset marks, ETFs, lending waterfalls, borrower bases, derivatives overlays, Monte Carlo overlays.',
+    metrics: [
+      'DCF stacks (FCFF, Gordon sensitivities)',
+      'ETF · fund NAV bridges, leveraged note replication',
+      'XVA overlays, borrower-base schedules, asset lending KPIs'
+    ]
   },
 ]
 
@@ -53,7 +64,7 @@ export function HighlightsSection() {
         </ScrollReveal>
 
         {/* Cards */}
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {highlights.map((h, i) => (
             <ScrollReveal key={i} delay={i * 110}>
               <div className="holographic-card relative h-full border-l-2 border-l-[#6B1F2A] p-8">

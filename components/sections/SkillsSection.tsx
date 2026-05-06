@@ -8,6 +8,7 @@ interface SkillsSectionProps {
 }
 
 const CATEGORIES = [
+  { key: 'financial_modelling', label: 'Financial Modelling & Valuation' },
   { key: 'languages',    label: 'Languages' },
   { key: 'frameworks',   label: 'Frameworks' },
   { key: 'data_ml',      label: 'Data & ML' },
@@ -23,7 +24,7 @@ function proficiency(name: string): number {
 }
 
 export function SkillsSection({ skills }: SkillsSectionProps) {
-  const [activeKey, setActiveKey] = useState('languages')
+  const [activeKey, setActiveKey] = useState('financial_modelling')
 
   return (
     <section className="py-20 bg-[#FBF7F1]">

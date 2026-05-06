@@ -1,14 +1,15 @@
 [
   {
-    "name": "Global Edge — Tokenization Platform",
+    "name": "Global Next — Tokenization & Trade Finance",
     "year": 2025,
     "category": "Web3 / Tokenization",
-    "summary": "Investor/Issuer portals for tokenizing logistics assets (shipping containers) and broader RWAs.",
+    "summary": "UAE-first tokenisation stacks for logistics and RWAs plus borrowing-base overlays for lender conversations. Bridges off-chain spreadsheets with oracle-ready payloads.",
     "outcomes": [
-      "Designed Azure-first architecture (SWA, Functions, Cosmos DB).",
-      "Built issuer/investor flows, oracle connectors (Chainlink), and compliance-ready data models."
+      "Architected issuer/investor portals on Azure (SWA · Functions · Cosmos DB).",
+      "Modelled trade-finance corridors and onboarding data that plug into underwriting packs.",
+      "Integrated Chainlink-style oracle flows for attestable KPIs feeding smart contracts."
     ],
-    "stack": ["Next.js", "Cosmos DB", "Azure Functions", "Chainlink", "Cosmos DB (NoSQL/Postgres)"],
+    "stack": ["Next.js", "Cosmos DB", "Azure Functions", "Chainlink", "Excel"],
     "links": {
       "site": "https://theglobaledge.io/",
       "repo": ""
@@ -18,10 +19,11 @@
     "name": "NF-GARCH Research & Synthetic Data",
     "year": 2025,
     "category": "AI & Quant Research",
-    "summary": "Evaluated Normalizing Flows on GARCH models for FX/equity returns; compared EGARCH/TGARCH vs GAN/Flow methods.",
+    "summary": "Normalizing-flow augmented GARCH for FX/equity surfaces — benchmarking against EGARCH/GAN hybrids for stylised facts and derivatives stress artefacts.",
     "outcomes": [
-      "Built full R/Python pipelines: chrono split + time-series CV, diagnostics, win-rates, Wilcoxon tests.",
-      "Integrated NF residuals into GARCH simulations; improved stylized facts matching."
+      "Implemented end-to-end R/Python pipelines with chrono-split validation and rigorous diagnostics.",
+      "Coupled NF residuals with Monte Carlo overlays for portfolios and reinsurance dashboards.",
+      "Packaged artefacts for Deloitte research forums and MSc thesis checkpoints."
     ],
     "stack": ["R (rugarch)", "Python", "TensorFlow/PyTorch", "nflows", "pandas", "Power BI"],
     "links": {
@@ -33,13 +35,13 @@
     "name": "Global Marketplace / Ops Portal",
     "year": 2025,
     "category": "Logistics",
-    "summary": "Consignment & containerized trade portal with order, inventory, invoicing, and reporting.",
+    "summary": "Consolidated sourcing, invoicing, and container KPIs behind a bilingual portal powering import/export coordinators.",
     "outcomes": [
-      "Re-architected UI/UX via UXPilot + Cursor prompts; public landing vs authenticated Ops portal.",
-      "Set up CI/CD and environment management."
+      "Separated public marketing funnel from hardened ops console with granular roles.",
+      "Instrumented SKU-level dashboards across FMCG import lines.",
+      "Automated nightly Azure builds with guarded secrets rotation."
     ],
     "stack": ["Next.js", "Vue", "Azure SWA", "Cosmos DB", "Functions"],
     "links": { "site": "", "repo": "" }
   }
 ]
-

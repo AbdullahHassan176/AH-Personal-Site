@@ -93,6 +93,8 @@ export function ContactForm() {
           <label className="block font-mono text-[#5F5A55] text-[10px] tracking-[0.2em] uppercase mb-1.5">Subject *</label>
           <select name="subject" value={formData.subject} onChange={handleChange} className={inputClass} style={inputStyle}>
             <option>Partnership Opportunity</option>
+            <option>Financial Modelling Engagement</option>
+            <option>Valuation / Advisory</option>
             <option>Investment Discussion</option>
             <option>Speaking Engagement</option>
             <option>Collaboration</option>

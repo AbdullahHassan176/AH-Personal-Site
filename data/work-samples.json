@@ -1,0 +1,20 @@
+[
+  {
+    "title": "DCF Valuation Model",
+    "label": "Illustrative · template workbook",
+    "summary": "FCFF waterfall, Gordon Growth terminal value engine, capex schedules, sensitivity tables ready for reviewer markup.",
+    "pdfUrl": ""
+  },
+  {
+    "title": "ETF NAV Calculator",
+    "label": "Illustrative · template workbook",
+    "summary": "NAV/iNAV bridge, leveraged ETF amplification checks, holdings roll-forward, ETF cash reconciliation patterns inspired by flagship funds.",
+    "pdfUrl": ""
+  },
+  {
+    "title": "Asset Lending Financial Model",
+    "label": "Illustrative · template workbook",
+    "summary": "Loan-book roll-up, covenant LTV ladders, borrower P&L, funding stack, liquidity stress toggles formatted for stakeholder walkthrough.",
+    "pdfUrl": ""
+  }
+]

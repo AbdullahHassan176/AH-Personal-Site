@@ -31,7 +31,7 @@ export function AboutHero({ profile }: AboutHeroProps) {
 
             <div className="grid grid-cols-2 gap-4 mb-10">
               <div className="holographic-card p-6">
-                <div className="text-3xl font-bold text-[#6B1F2A] mb-1">5+</div>
+                <div className="text-3xl font-bold text-[#6B1F2A] mb-1">5</div>
                 <div className="text-[#5F5A55] text-sm">Active Ventures</div>
               </div>
               <div className="holographic-card p-6">

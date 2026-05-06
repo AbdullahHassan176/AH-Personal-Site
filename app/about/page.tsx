@@ -7,9 +7,10 @@ import { readJSON, readYAML } from '@/lib/data'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'About Abdullah Hassan - AI & Analytics Leader',
-  description: 'Learn about Abdullah Hassan\'s journey as a technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization. Discover his expertise, experience, and vision.',
-  keywords: ['About Abdullah Hassan', 'AI Expert', 'Technology Leader', 'Entrepreneur Background', 'Professional Experience'],
+  title: 'About Abdullah Hassan — Quant Finance Modeller & AI Founder',
+  description:
+    'Actuarial-trained financial modeller and AI founder — Deloitte digital assets advisory, MSc NF-GARCH research, Safe Labs, Global Next (RWA logistics), Unamani AI consultancy.',
+  keywords: ['Abdullah Hassan biography', 'Actuarial Science', 'Deloitte Digital Assets', 'DCF modeller', 'Dubai'],
   url: '/about',
 })
 

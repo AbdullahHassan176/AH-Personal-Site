@@ -4,69 +4,118 @@ import { useState } from 'react'
 
 const ventures = [
   {
-    name:    'Deloitte South Africa',
-    role:    'Quant / Financial Engineering',
-    type:    'Consulting',
-    status:  'Active',
-    initial: 'D',
+    pill: 'Global Next',
+    name: 'Global Next',
+    role: 'Founder',
+    type: 'Smart Logistics · Tokenised RWA',
+    status: 'Active',
+    initial: 'G',
     description:
-      'Quantitative model building and validation across derivatives and risk at one of the Big Four. Delivers reproducible research pipelines, technical presentations, and cross-functional analytics for client engagements.',
+      'Multinational smart-logistics operator building tokenised real-world asset infrastructure for trade finance. I pair blockchain architecture with borrowing-base spreadsheets, covenant monitoring, and lender-friendly data rooms so credit committees see both the on-chain posture and familiar Excel bridges.',
     highlights: [
-      'Built & validated quant models across derivatives and risk',
-      'Documented controls and created reproducible research pipelines',
-      'Produced technical presentations for quant audiences',
-      'Delivered client-facing analytics with measurable business impact',
+      'Design RWA issuance paths with MOCCAE-grade compliance and treasury controls',
+      'Model trade-finance corridors, inventory roll-forwards, and stress triggers for capital partners',
+      'Wire investor + issuer workspaces on Azure while keeping deterministic Excel exports for internal risk',
+      'Integrate attestable KPI oracles feeding smart contracts without breaking audit trails'
     ],
-    tech:    ['R', 'Python', 'rugarch', 'TensorFlow', 'PyTorch', 'GitHub Actions', 'Power BI'],
+    tech: ['Next.js', 'Azure SWA', 'Functions', 'Cosmos DB', 'Solidity toolchain', 'Excel', 'Power BI'],
     metrics: [
-      { label: 'Since',    value: '2022' },
-      { label: 'Domain',   value: 'Quant / Risk' },
-      { label: 'Location', value: 'South Africa' },
-      { label: 'Mode',     value: 'Remote-friendly' },
+      { label: 'Region', value: 'MENA · global lanes' },
+      { label: 'Focus', value: 'RWA · trade' },
+      { label: 'Stage', value: 'Pilot → scale' },
+      { label: 'HQ', value: 'Dubai' },
     ],
   },
   {
-    name:    'Unamani Pty Ltd',
-    role:    'Founder / CEO',
-    type:    'AI & Data Analytics',
-    status:  'Active',
+    pill: 'Safe Labs',
+    name: 'Safe Labs',
+    role: 'CEO',
+    type: 'Quantitative Research & AI Studio',
+    status: 'Active',
+    initial: 'S',
+    description:
+      'Dubai-based quantitative research and AI studio — part think tank, part media lab. We run experiments on volatility, generative finance, and frontier policy where numbers need a narrative anchor.',
+    highlights: [
+      'House NF-GARCH and synthetic-market research pipelines',
+      'Produce board-ready visuals and white-paper calibre documentation',
+      'Co-develop signal labs with founders who need institutional tone + speed',
+      'Host deep-dive forums translating quant work for capital allocators'
+    ],
+    tech: ['Python', 'R', 'PyTorch', 'Jupyter', 'Figma-to-code', 'Notion', 'OBS / media stack'],
+    metrics: [
+      { label: 'Mandate', value: 'Research' },
+      { label: 'Output', value: 'Memos · media' },
+      { label: 'Base', value: 'Dubai' },
+      { label: 'Mode', value: 'Bespoke pods' },
+    ],
+  },
+  {
+    pill: 'Unamani AI',
+    name: 'Unamani AI',
+    role: 'Founder / CEO',
+    type: 'AI & Data Consultancy',
+    status: 'Active',
     initial: 'U',
     description:
-      'AI-forward data product and consulting company. Ships dashboards, ETL pipelines, and ML prototypes for clients. Serves as the parent platform for Global Edge and Global Marketplace.',
+      'Applied AI consultancy shipping gradient boosting stacks, NLP copilots, and generative tooling for enterprises that already own messy data estates. Parent co. for marketplace and token experiments.',
     highlights: [
-      'Led development of AI-forward data products and consulting engagements',
-      'Shipped dashboards, ETL pipelines, and ML prototypes for clients',
-      'Architected Azure-first infrastructure: SWA, Functions, Cosmos DB',
-      'Incubates Global Edge (tokenization) and Global Marketplace (trade portal)',
+      'Deploy transformer + GBM hybrids for underwriting, CX, and anomaly detection',
+      'Containerise reproducible notebooks + FastAPI surfaces for regulated clients',
+      'Pair MLOps on Azure with Excel handoff layers executives already trust',
+      'Co-build data strategies with CFOs bridging cloud spend to model ROI'
     ],
-    tech:    ['Azure', 'Cosmos DB', 'Azure Static Web Apps', 'Azure Functions', 'Python', 'Next.js'],
+    tech: ['Azure', 'Cosmos DB', 'Python', 'XGBoost', 'Transformers', 'Next.js'],
     metrics: [
-      { label: 'Founded',  value: '2024' },
-      { label: 'Products', value: '2 live' },
-      { label: 'Location', value: 'SA · Global' },
-      { label: 'Cloud',    value: 'Azure-first' },
+      { label: 'Founded', value: '2024' },
+      { label: 'Focus', value: 'ML + data' },
+      { label: 'Coverage', value: 'Global' },
+      { label: 'Stack', value: 'Azure-first' },
     ],
   },
   {
-    name:    'Petigree Global / Hurayra Halal',
-    role:    'Founder / Operator',
-    type:    'UAE Mainland · Import & Distribution',
-    status:  'Active',
+    pill: 'Petigree',
+    name: 'Petigree Global / Hurayra Halal',
+    role: 'Founder / Operator',
+    type: 'UAE Mainland · FMCG Import',
+    status: 'Active',
     initial: 'P',
     description:
-      'UAE mainland entity importing and distributing premium halal pet food (Montego brand) under the Hurayra Halal brand. Handles MOCCAE compliance, partner management, and a custom distribution platform.',
+      'UAE mainland import and distribution house for halal FMCG and pet nutrition. The operating proof that I still run warehouses, customs paperwork, and distributor economics — not only models.',
     highlights: [
-      'Established UAE mainland entity; coordinated Montego shipments',
-      'Managed MOCCAE compliance and regulatory approvals',
-      'Negotiated A&P budgets and managed distributor partners (Aleef, etc.)',
-      'Developed a distribution app for order and inventory management',
+      'Own Montego-aligned halal SKU pipeline with distributor scorecards',
+      'Coordinate MOCCAE, port, and retailer compliance without dropping margin visibility',
+      'Pair Shopify + internal Next.js consoles for sell-through analytics',
+      'Translate physical inventory turns into weekly cash forecasts for lenders'
     ],
-    tech:    ['Next.js', 'Vue', 'Shopify', 'Wix', 'Azure', 'Power BI'],
+    tech: ['Next.js', 'Shopify', 'Power BI', 'Excel', 'MOCCAE tooling'],
     metrics: [
-      { label: 'Founded',    value: '2024' },
-      { label: 'Market',     value: 'UAE' },
-      { label: 'Compliance', value: 'MOCCAE' },
-      { label: 'Brand',      value: 'Hurayra Halal' },
+      { label: 'Market', value: 'UAE GCC' },
+      { label: 'SKU', value: 'FMCG · pet' },
+      { label: 'Since', value: '2024' },
+      { label: 'Ops', value: 'Mainland' },
+    ],
+  },
+  {
+    pill: 'Marketplace',
+    name: 'Global Marketplace',
+    role: 'Founder · Product',
+    type: 'Containerised Trade Portal',
+    status: 'Active',
+    initial: 'M',
+    description:
+      'Container-led import/export orchestration linking buyers, forwarders, and finance teams inside one authenticated portal layered on Unamani infrastructure.',
+    highlights: [
+      'Consolidates quotes, manifests, invoicing, and FX assumptions per lane',
+      'Embed credit triggers + vendor KPI dashboards for counterparty teams',
+      'Ship bilingual UX for desks operating between UAE, Africa, and EU buyers',
+      'Automate release management + secrets via GitHub Actions on Azure'
+    ],
+    tech: ['Next.js', 'Vue', 'Azure SWA', 'Cosmos DB', 'Functions'],
+    metrics: [
+      { label: 'Scope', value: 'Trade ops' },
+      { label: 'Users', value: 'B2B teams' },
+      { label: 'Layer', value: 'Portal' },
+      { label: 'Cloud', value: 'Azure' },
     ],
   },
 ]
@@ -88,21 +137,21 @@ export function VenturesDashboard() {
             Venture{' '}
             <span className="gradient-text-brand">Portfolio</span>
           </h2>
-          <p className="text-[#5F5A55] text-base mt-4 max-w-lg leading-relaxed">
-            The companies and platforms I build and operate.
+          <p className="text-[#5F5A55] text-base mt-4 max-w-2xl leading-relaxed">
+            Five active builder lines — quant research, AI services, tokenised trade infrastructure, FMCG operations, and the trade portal gluing them together.
           </p>
         </div>
 
         {/* Selector tabs */}
         <div
-          className="inline-flex gap-1 p-1 mb-10 rounded-[var(--radius-md)]"
+          className="flex flex-wrap gap-1 p-1 mb-10 rounded-[var(--radius-md)] justify-start"
           style={{ background: '#EFE6DA', border: '1px solid rgba(214,195,163,0.40)' }}
         >
           {ventures.map((vent, i) => (
             <button
-              key={i}
+              key={vent.pill}
               onClick={() => setActive(i)}
-              className="px-5 py-2.5 rounded-[calc(var(--radius-md)-2px)] text-sm font-semibold transition-all duration-200"
+              className="px-4 py-2.5 rounded-[calc(var(--radius-md)-2px)] text-xs sm:text-sm font-semibold transition-all duration-200"
               style={
                 active === i
                   ? {
@@ -113,7 +162,7 @@ export function VenturesDashboard() {
                   : { color: '#5F5A55' }
               }
             >
-              {vent.name.split(' ')[0]}
+              {vent.pill}
             </button>
           ))}
         </div>

@@ -21,6 +21,13 @@ export function ContactHero() {
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
       ),
     },
+    {
+      title: 'Financial Modelling',
+      desc: 'DCF, NAV, lending, borrower-base builds',
+      icon: (
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25m0 0l3 3M9 11.25l3-3m-3 3L9 21m12-13.5V9A2.25 2.25 0 0018.75 6.75h-13.5A2.25 2.25 0 003 9v10.5A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18v-8.25M12 12.75h.008v.008H12v-.008z" />
+      ),
+    },
   ]
 
   return (
@@ -35,12 +42,12 @@ export function ContactHero() {
           <span className="gradient-text-brand">Collaborate?</span>
         </h1>
 
-        <p className="text-[#5F5A55] text-lg mb-14 max-w-2xl mx-auto leading-relaxed">
-          Whether you&apos;re looking to collaborate on innovative projects, discuss investment opportunities,
-          or explore speaking engagements, I&apos;m here to help turn your vision into reality.
+        <p className="text-[#5F5A55] text-lg mb-14 max-w-3xl mx-auto leading-relaxed">
+          Whether you&apos;re hiring for a financial modelling or valuation sprint, layering AI onto a regulated stack,
+          or exploring an investment lane, attach the scope below — spreadsheet-native or production-native, I operate in both.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
           {cards.map((card, i) => (
             <div key={i} className="holographic-card p-6 flex flex-col items-center text-center">
               <div

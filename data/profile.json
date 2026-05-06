@@ -1,23 +1,32 @@
 {
   "fullName": "Abdullah Hassan",
-  "headline": "Quant-minded AI & Analytics Leader • Tokenization Builder • Operator",
-  "location": "United Arab Emirates (Dubai)",
-  "summary": "Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization. He leads multi-disciplinary teams to build data products, investor/issuer portals, and Azure-first platforms that turn complex ideas into production systems. His work spans normalizing-flow GARCH research, synthetic data generation, FX & equity modeling, and the architecture of tokenization ecosystems for logistics and real estate. Abdullah blends rigorous analytical training with hands-on full-stack execution to ship valuable, scalable software.",
+  "headline": "Quant-minded AI & Analytics Leader • Financial Modeller & Valuation Specialist • Operator",
+  "location": "Dubai, UAE (UTC+4)",
+  "availability": "Available globally · 30+ hrs/week · Upwork · LinkedIn · direct engagements",
+  "summary": "I build lender-grade financial models and production AI systems at the same whiteboard — DCF and NAV frameworks, XVA analytics, NF-GARCH research, tokenised RWA platforms, and Azure-first data products. My foundation is actuarial science and mathematical statistics (Wits); I spent 3+ years at Deloitte delivering models to banks, fintechs, and digital-asset desks across MENA. I am CEO at Safe Labs, founder at Global Next, and run Unamani AI for applied ML and data engagements.",
+  "languages": [
+    "English — fluent",
+    "Arabic — fluent",
+    "Afrikaans — fluent",
+    "Portuguese — fluent"
+  ],
   "currentFocus": [
-    "Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)",
-    "Global Marketplace — import/export & containerized trade portal",
-    "Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance"
+    "Financial Modelling & Valuation Advisory — DCF, asset & ETF NAV, lending books, borrower-base schedules, investor-ready scenarios",
+    "Global Next — smart logistics + tokenised RWA for trade finance; borrowing-base and trade finance modelling alongside on-chain architecture",
+    "Safe Labs — quantitative research & AI studio in Dubai — research, prototyping, media",
+    "Unamani AI — NLP, generative AI, gradient boosting, bespoke ML pipelines for clients",
+    "Global Marketplace — containerised trade portal for import/export"
   ],
   "education": [
     {
-      "degree": "MSc (Mathematical Statistics), in progress",
-      "institution": "University of the Witwatersrand (Wits)",
-      "focus": "Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation"
+      "degree": "Dual BSc · Actuarial Science & Mathematical Statistics",
+      "institution": "University of the Witwatersrand (Wits), South Africa",
+      "focus": "Probability, inference, stochastic processes, derivatives pricing foundations, and reserving — the backbone of defensible valuations and stress testing."
     },
     {
-      "degree": "BSc (Actuarial Science) + AI/Statistics",
-      "institution": "—",
-      "focus": "Quantitative finance, time-series modeling, ML/AI"
+      "degree": "MSc · Computer Science (AI & Statistics)",
+      "institution": "University of the Witwatersrand (Wits) — completed 2025",
+      "focus": "Research: Normalizing Flow GARCH (NF-GARCH) for synthetic financial time series — volatility regimes, derivatives risk, generative benchmarking."
     }
   ],
   "emails": ["abdullah.hassan@globalnext.rocks"],
@@ -29,4 +38,3 @@
     "twitter": ""
   }
 }
-

@@ -1,5 +1,5 @@
 // Bump version whenever cached assets change so old caches are purged
-const CACHE_NAME = 'ah-site-v3'
+const CACHE_NAME = 'ah-site-v4'
 
 const STATIC_ASSETS = [
   '/',
@@ -12,7 +12,6 @@ const STATIC_ASSETS = [
   '/favicon.svg',
   '/manifest.json',
   '/images/DSCF6400.JPG',
-  '/images/DSCF6402.JPG',
   '/images/DSCF6428.JPG',
   '/images/DSCF6446.JPG',
   '/images/DSCF6453.JPG',

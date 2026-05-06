@@ -40,10 +40,10 @@ export function EducationSection({ profile }: EducationSectionProps) {
                 </div>
 
                 <div className="space-y-3 pt-4 border-t border-[rgba(198,161,91,0.15)]">
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center gap-4">
                     <span className="text-[#5F5A55] text-sm">Status</span>
                     <span
-                      className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                      className="text-xs font-semibold px-2.5 py-1 rounded-full text-right"
                       style={
                         isInProgress
                           ? { background: 'rgba(198,161,91,0.15)', color: '#C6A15B' }
@@ -53,13 +53,9 @@ export function EducationSection({ profile }: EducationSectionProps) {
                       {isInProgress ? 'In Progress' : 'Completed'}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-[#5F5A55] text-sm">Focus</span>
-                    <span className="text-[#1A1A1A] text-sm font-medium">AI & Statistics</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-[#5F5A55] text-sm">Research</span>
-                    <span className="text-[#1A1A1A] text-sm font-medium">NF-GARCH Models</span>
+                  <div className="pt-1">
+                    <div className="text-[#5F5A55] text-sm mb-1">Focus</div>
+                    <p className="text-[#1A1A1A] text-sm leading-relaxed font-medium">{edu.focus}</p>
                   </div>
                 </div>
               </div>

@@ -8,7 +8,6 @@ export function PerformanceOptimization() {
     const preloadCriticalResources = () => {
       const criticalImages = [
         '/images/DSCF6400.JPG', // Hero image
-        '/images/DSCF6402.JPG', // Gallery images
         '/images/DSCF6428.JPG',
       ]
 

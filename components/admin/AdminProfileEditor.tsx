@@ -8,6 +8,8 @@ interface ProfileData {
   headline: string
   location: string
   summary: string
+  availability?: string
+  languages?: string[]
   currentFocus: string[]
   education: Array<{
     degree: string
@@ -89,25 +91,32 @@ export function AdminProfileEditor({ onBack }: AdminProfileEditorProps) {
     // Final fallback to default data
     const mockData: ProfileData = {
       fullName: 'Abdullah Hassan',
-      headline: 'Quant-minded AI & Analytics Leader • Tokenization Builder • Operator',
-      location: 'United Arab Emirates (Dubai)',
-      summary: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization.',
+      headline: 'Quant-minded AI & Analytics Leader • Financial Modeller & Valuation Specialist • Operator',
+      location: 'Dubai, UAE (UTC+4)',
+      availability: 'Available globally · 30+ hrs/week',
+      summary:
+        'I build lender-grade financial models and production AI systems — DCF, NAV, XVA, NF-GARCH research, tokenised RWA platforms, and Azure-first data products. Actuarial + stats foundation (Wits); 3+ years at Deloitte advising financial institutions across MENA.',
+      languages: ['English — fluent', 'Arabic — fluent', 'Afrikaans — fluent', 'Portuguese — fluent'],
       currentFocus: [
-        'Global Edge — tokenization of logistics & RWAs (UAE-first pilot, investor/issuer portals)',
-        'Global Marketplace — import/export & containerized trade portal',
-        'Quant/AI research — NF-GARCH, GAN/Flow-based synthetic data for finance'
+        'Financial Modelling & Valuation Advisory — DCF, asset & ETF NAV, lending books',
+        'Global Next — smart logistics + tokenised RWA; borrowing-base overlays',
+        'Safe Labs — quantitative research & AI studio (Dubai)',
+        'Unamani AI — applied ML & data engagements',
+        'Global Marketplace — containerised trade portal',
       ],
       education: [
         {
-          degree: 'MSc (Mathematical Statistics), in progress',
-          institution: 'University of the Witwatersrand (Wits)',
-          focus: 'Evaluating the impact of Normalizing Flows on GARCH models for synthetic financial time series generation'
+          degree: 'Dual BSc · Actuarial Science & Mathematical Statistics',
+          institution: 'University of the Witwatersrand (Wits), South Africa',
+          focus:
+            'Probability, inference, stochastic processes, reserving — foundation for insurer-grade and capital-markets workloads.',
         },
         {
-          degree: 'BSc (Actuarial Science) + AI/Statistics',
-          institution: '—',
-          focus: 'Quantitative finance, time-series modeling, ML/AI'
-        }
+          degree: 'MSc · Computer Science (AI & Statistics)',
+          institution: 'University of the Witwatersrand (Wits) — completed 2025',
+          focus:
+            'Normalizing Flow GARCH models for synthetic financial time series.',
+        },
       ],
       emails: ['abdullah.hassan@globalnext.rocks'],
       phones: ['+27 82 551 1243'],

@@ -6,9 +6,10 @@ import { readJSON } from '@/lib/server-data'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'Contact Abdullah Hassan - Get In Touch',
-  description: 'Get in touch with Abdullah Hassan for business opportunities, partnerships, speaking engagements, and collaboration.',
-  keywords: ['Contact Abdullah Hassan', 'Business Contact', 'AI Consulting', 'Partnership Opportunities'],
+  title: 'Contact Abdullah Hassan — Modelling & Advisory',
+  description:
+    'Book financial modelling, valuation advisory, AI builds, or venture discussions with Abdullah Hassan — Dubai-based, available globally.',
+  keywords: ['Contact financial modeller UAE', 'DCF consultant', 'valuation advisory', 'AI consulting'],
   url: '/contact',
 })
 

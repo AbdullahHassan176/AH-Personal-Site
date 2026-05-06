@@ -19,7 +19,7 @@ export function SkillsHeader({ onToggleSkills, onToggleView, isTechnical, viewMo
             Skills <span className="gradient-text-brand">Dashboard</span>
           </h1>
           <p className="text-[#5F5A55] text-lg max-w-2xl mx-auto leading-relaxed">
-            Interactive visualisation of technical expertise and soft skills across AI, finance, leadership, and innovation
+            Technical track spans financial modelling stacks, AI systems, token rails, and logistics analytics — soft skills cover boardroom delivery and venture leadership.
           </p>
         </div>
 

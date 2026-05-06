@@ -16,7 +16,7 @@ export function Footer() {
               <span className="text-[#6B1F2A]">Hassan</span>
             </div>
             <p className="text-[#5F5A55] text-sm leading-relaxed mb-6 max-w-xs">
-              Quant-minded AI &amp; Analytics Leader. Building tokenization ecosystems and data products across UAE and South Africa.
+              Quant-minded AI leader and financial modeller — DCF, NAV, lending, NF-GARCH, and tokenised trade infrastructure operating out of Dubai and global lanes.
             </p>
             {/* Social icon */}
             <a

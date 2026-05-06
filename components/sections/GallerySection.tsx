@@ -11,7 +11,6 @@ interface GallerySectionProps {
 // Natural pixel dimensions — used so next/image renders each photo at its
 // true aspect ratio instead of being force-fitted into a fixed container.
 const DIMS: Record<string, { w: number; h: number }> = {
-  '/images/DSCF6402.JPG': { w: 4160, h: 6240 }, // portrait 2:3
   '/images/DSCF6428.JPG': { w: 4160, h: 6240 }, // portrait 2:3
   '/images/DSCF6446.JPG': { w: 6240, h: 4160 }, // landscape 3:2
   '/images/image0.jpeg':  { w: 3024, h: 4032 }, // portrait 3:4
@@ -19,7 +18,6 @@ const DIMS: Record<string, { w: number; h: number }> = {
 }
 
 const CURATED_SRCS = [
-  '/images/DSCF6402.JPG',
   '/images/DSCF6428.JPG',
   '/images/DSCF6446.JPG',
   '/images/image0.jpeg',

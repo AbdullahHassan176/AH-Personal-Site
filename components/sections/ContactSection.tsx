@@ -62,8 +62,8 @@ export function ContactSection({ contact }: ContactSectionProps) {
             Let&apos;s{' '}
             <span className="gradient-text-brand">Connect</span>
           </h2>
-          <p className="text-[#5F5A55] text-base mt-4 max-w-lg leading-relaxed">
-            Ready to discuss opportunities, partnerships, or innovative projects?
+        <p className="text-[#5F5A55] text-base mt-4 max-w-lg leading-relaxed">
+            Available globally for financial modelling, valuation advisory, NF-GARCH analytics, AI builds, and tokenised trade programmes — Dubai · UTC+4.
           </p>
         </div>
 
@@ -145,8 +145,11 @@ export function ContactSection({ contact }: ContactSectionProps) {
                   style={{ appearance: 'none' }}
                 >
                   <option value="Partnership Opportunity">Partnership Opportunity</option>
+                  <option value="Financial Modelling Engagement">Financial Modelling Engagement</option>
+                  <option value="Valuation / Advisory">Valuation / Advisory</option>
                   <option value="Investment Discussion">Investment Discussion</option>
                   <option value="Speaking Engagement">Speaking Engagement</option>
+                  <option value="Collaboration">Collaboration</option>
                   <option value="General Inquiry">General Inquiry</option>
                 </select>
               </div>

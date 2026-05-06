@@ -2,8 +2,9 @@ import { Metadata } from 'next'
 
 export const siteConfig = {
   name: 'Abdullah Hassan',
-  title: 'Abdullah Hassan - Quant-minded AI & Analytics Leader',
-  description: 'Abdullah Hassan is a results-driven technologist and entrepreneur operating at the intersection of AI, quantitative finance, and real-world asset tokenization. Founder of Global Next and Unamani AI.',
+  title: 'Abdullah Hassan - Quant AI Leader & Financial Modeller',
+  description:
+    'Abdullah Hassan — Dubai-based quantitative finance modeller (DCF, NAV, lending, XVA), AI researcher (NF-GARCH), Deloitte digital-assets alum, founder of Safe Labs, Global Next, and Unamani AI.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://abdullahhassan.azurestaticapps.net',
   ogImage: '/images/DSCF6400.JPG',
   links: {
@@ -22,12 +23,15 @@ export const siteConfig = {
     'Blockchain',
     'Asset Tokenization',
     'Global Next',
+    'Safe Labs',
     'Unamani AI',
     'Technology Leader',
     'Business Intelligence',
     'Financial Technology',
     'AI Consulting',
     'Data Science',
+    'DCF Valuation',
+    'ETF NAV',
     'Investment Technology',
     'Digital Assets',
     'Financial Analytics',
@@ -156,12 +160,10 @@ export function generateStructuredData({
   description = siteConfig.description,
   url = siteConfig.url,
   image = siteConfig.ogImage,
-  jobTitle = 'AI & Analytics Leader',
-  worksFor = 'Global Next, Unamani AI',
+  jobTitle = 'Financial Modeller · AI Founder',
+  worksFor = 'Safe Labs, Global Next, Unamani AI',
   sameAs = [
-    'https://linkedin.com/in/abdullahhassan',
-    'https://twitter.com/abdullahhassan',
-    'https://github.com/abdullahhassan',
+    'https://www.linkedin.com/in/abdullah-hassan-635a831b6/',
   ],
 }: {
   type?: 'Person' | 'Organization' | 'WebSite' | 'WebPage'
@@ -192,17 +194,18 @@ export function generateStructuredData({
       })),
       sameAs,
       knowsAbout: [
-        'Artificial Intelligence',
-        'Machine Learning',
-        'Quantitative Finance',
-        'Data Analytics',
-        'Financial Technology',
-        'Blockchain Technology',
+        'Financial modelling',
+        'DCF valuation',
+        'ETF net asset value',
+        'Derivative pricing',
+        'Artificial intelligence',
+        'Quantitative finance',
+        'Blockchain technology',
         'Asset Tokenization',
-        'Business Intelligence',
+        'Synthetic financial data',
       ],
       alumniOf: 'University',
-      nationality: 'American',
+      nationality: 'AE',
     }
   }
 

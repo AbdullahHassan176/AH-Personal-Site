@@ -1,7 +1,7 @@
 # Abdullah Hassan Personal Website - AI.md
 
 ## Project Overview
-A modern, professional personal website for Abdullah Hassan showcasing his ventures, portfolio, and expertise in AI, finance, and entrepreneurship. Built with Next.js 14, TypeScript, and modern web technologies.
+Dual-audience personal brand site for **Abdullah Hassan** (Dubai, UAE): **financial clients** (DCF, NAV, lending, XVA, valuations) and **AI / tokenisation clients**. Content is driven from `data/*.json`, `skills.yaml`, and shared section components (`components/sections/*`).
 
 ## Architecture & Technologies
 - **Framework**: Next.js 14 with App Router
@@ -9,7 +9,7 @@ A modern, professional personal website for Abdullah Hassan showcasing his ventu
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **Animations**: Framer Motion
-- **Content**: Contentlayer for MDX
+- **Content**: `data/` JSON/YAML consumed via `lib/data.ts`; no CMS
 - **Analytics**: Vercel Analytics (switchable)
 - **Email**: Resend
 - **Deployment**: Vercel

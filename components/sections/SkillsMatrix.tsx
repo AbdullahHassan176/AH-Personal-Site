@@ -1,8 +1,9 @@
 const skills = [
-  { category: 'Artificial Intelligence',  icon: 'brain',      proficiency: 95, experience: '5+ Years', projects: '12+',        certification: 'Certified' },
-  { category: 'Quantitative Finance',     icon: 'chart',      proficiency: 90, experience: '4+ Years', projects: '8+',         certification: 'Certified' },
-  { category: 'Leadership',               icon: 'users',      proficiency: 88, experience: '6+ Years', projects: '5 Companies', certification: 'Executive' },
-  { category: 'Innovation',               icon: 'lightbulb',  proficiency: 92, experience: '7+ Years', projects: '15+',         certification: 'Founder'   },
+  { category: 'Financial Modelling & Valuation', icon: 'sheet',     proficiency: 93, experience: '3+ yrs Deloitte', projects: 'Institutional-grade', certification: 'Certified' },
+  { category: 'Artificial Intelligence',      icon: 'brain',       proficiency: 95, experience: '5+ Years',        projects: '12+ Builds',           certification: 'Certified' },
+  { category: 'Quantitative Finance',         icon: 'chart',       proficiency: 90, experience: '4+ Years',        projects: 'NF-GARCH + desk',       certification: 'Certified' },
+  { category: 'Leadership',                   icon: 'users',       proficiency: 88, experience: '6+ Years',        projects: '5 ventures',           certification: 'Executive' },
+  { category: 'Innovation',                   icon: 'lightbulb',   proficiency: 92, experience: '7+ Years',        projects: '15+ experiments',      certification: 'Founder'   },
 ]
 
 const certBadge: Record<string, { bg: string; color: string }> = {
@@ -14,6 +15,8 @@ const certBadge: Record<string, { bg: string; color: string }> = {
 function Icon({ name }: { name: string }) {
   if (name === 'brain')
     return <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+  if (name === 'sheet')
+    return <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
   if (name === 'chart')
     return <path strokeLinecap="round" strokeLinejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
   if (name === 'users')

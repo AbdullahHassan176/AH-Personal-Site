@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { DataExportHelper } from './DataExportHelper'
 
 interface SkillsData {
+  financial_modelling: string[]
   languages: string[]
   frameworks: string[]
   data_ml: string[]
@@ -17,6 +18,17 @@ interface AdminSkillsEditorProps {
 
 export function AdminSkillsEditor({ onBack }: AdminSkillsEditorProps) {
   const [skills, setSkills] = useState<SkillsData>({
+    financial_modelling: [
+      'DCF modelling (FCFF & FCFE)',
+      'Asset valuation (DRC · comparables)',
+      'ETF & fund NAV / iNAV',
+      'Excel (advanced modelling)',
+      'Financial projections & scenarios',
+      'XVA analytics',
+      'Credit risk & borrowing bases',
+      'GARCH · NF-GARCH',
+      'Risk modelling (VaR · CVaR)',
+    ],
     languages: ['Python', 'R', 'JavaScript', 'TypeScript'],
     frameworks: ['Next.js', 'Vue', 'React', 'TensorFlow', 'PyTorch'],
     data_ml: ['Time-series (GARCH/NF/GAN)', 'Synthetic data generation', 'ETL & feature engineering'],
@@ -112,6 +124,7 @@ export function AdminSkillsEditor({ onBack }: AdminSkillsEditorProps) {
   }
 
   const categories = [
+    { key: 'financial_modelling', label: 'Financial Modelling & Valuation', icon: '→' },
     { key: 'languages', label: 'Programming Languages', icon: '→' },
     { key: 'frameworks', label: 'Frameworks & Libraries', icon: '→' },
     { key: 'data_ml', label: 'Data & ML', icon: '→' },
